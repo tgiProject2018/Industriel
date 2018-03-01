@@ -1,68 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-
-    // On inclus notre fichier de connexion à la bdo
-    // =============================================================================================
-    include('DataLayer/BusinessLayer/connection.php');
-    // =============================================================================================
-    
-    // On start la session
-    // =============================================================================================
-    session_start();
-    // =============================================================================================
-    
-    // On fait certain si le user est deja login de le redirect tout de suite à sign out
-    // =============================================================================================
-    if(isset($_SESSION['admin_utilisateur'])) {
-    header("location: deconnexionForm.php");
-    } 
-    // =============================================================================================
-    
-    // On recoit la requête (le login)
-    // =============================================================================================
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        // Le username et password d'entré
-        // *****************************************************************************************
-        $utilisateur = mysqli_real_escape_string($db,$_POST['username']);
-        $motdepasse = mysqli_real_escape_string($db,$_POST['password']); 
-        // *****************************************************************************************
-        
-        // On selectionne le user selon les donnees entree et on fait la query, on rend la session
-        // active si les donnees entrees sont bonne
-        // *****************************************************************************************
-        $query = "SELECT UserID FROM User WHERE Username = '$utilisateur' and Password = '$motdepasse'";
-        $utilisateurSelect = mysqli_query($db,$query);
-        $arrayUtilisateur = mysqli_fetch_array($utilisateurSelect,MYSQLI_ASSOC);
-        $active = $arrayUtilisateur['active'];
-        // *****************************************************************************************
-        
-        // Si le user etait un bon user, une session est active
-        // *****************************************************************************************
-        $sessionPourAdmin = mysqli_num_rows($utilisateurSelect);
-        // *****************************************************************************************
-      
-        // Les donnees etait entre
-        // *****************************************************************************************
-        if($sessionPourAdmin == 1) {
-          $_SESSION['admin_utilisateur'] = $utilisateur;
-          header("location: deconnexionForm.php");
-        }
-        // *****************************************************************************************
-        
-        // Les données entrées par le user etait pas bonne
-        // *****************************************************************************************
-        else {
-          $error = "Vos données entrées sont invalides.";
-          echo "<script type='text/javascript'>alert('Données Invalides');</script>";
-        }
-        // *****************************************************************************************
-    }
-    // =============================================================================================
-?>
-
 <head>
 
   <!-- Meta -->
@@ -99,66 +37,9 @@
 
   <!-- Titre et adresse -->
   <!--===============================================================================================-->
-  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Comit&eacute de Loisirs d'Ivaco</div>
-  <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
-    1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
+  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">MÃ©langeur chimique</div>
   <!--===============================================================================================-->
-
-  <!-- Navigation -->
-  <!--===============================================================================================-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4 row">
-    <div class="container col-12">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="index.php">Accueil
-            </a>
-          </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="nouvelles.php">Nouvelles</a>
-          </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="achats.php">Achats</a>
-            <span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="activites.php">Activit&eacutes</a>
-          </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="contact.php">Contact</a>
-          </li>          
-          <?php
-          if(isset($_SESSION['admin_utilisateur'])) {
-         ?>
-         <li class="nav-item active px-lg-2">
-         <a class="nav-link text-uppercase text-expanded" href="connexionForm.php">Déconnexion</a>
-         </a>
-         </li>
-         <?php
-           }
-           else {
-             ?>
-          <li class="nav-item active px-lg-2">
-           <a class="nav-link text-uppercase text-expanded" href="connexionForm.php">Connexion</a>
-         </a>
-         </li>
-         <?php
-           }
-         ?>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="admin.php">Admin</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!--===============================================================================================-->
-
+ 
   <!-- CSS pour la page -->
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -252,7 +133,7 @@
     <!--===============================================================================================-->
     <footer class="bg-faded text-center py-5">
       <div class="container">
-        <p class="m-0">Copyright &copy; Ivaco Loisirs 2017</p>
+        <p class="m-0">Copyright &copy; MÃ©langeur Industriel 2018</p>
       </div>
     </footer>
     <!--===============================================================================================-->
