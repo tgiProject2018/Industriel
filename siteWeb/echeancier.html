@@ -10,7 +10,7 @@
 
   <!-- Titre -->
   <!--===============================================================================================-->
-  <title>Connexion</title>
+  <title>Echeancier</title>
   <!--===============================================================================================-->
 
   <!-- Bootstrap core CSS -->
@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="nouvelles.php">ListeClients</a>
+            <a class="nav-link text-uppercase text-expanded" href="nouvelles.php">Liste de Clients</a>
           </li>
           <li class="nav-item px-lg-2">
             <a class="nav-link text-uppercase text-expanded" href="achats.php">Historique</a>
@@ -94,35 +94,66 @@
   <link href="css/business-casual.css" rel="stylesheet">
   <div class="limiter">
     <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100">
-          <form id="login" class="login100-form validate-form" onsubmit="connexion()" method="POST">
-            <span class="login100-form-logo" style="background-image: URL(img/committee3.png)">
-            </span>
+      <div class="container" align="center">
+        <div class="bg-faded p-4 my-4">
+          <!-- Titre de cette section-->
+          <hr class="divider">
+          <h2 class="text-center text-lg text-uppercase my-0">
+            <strong>Echeancier</strong>
+          </h2>
+          <hr class="divider">
 
-            <span class="login100-form-title p-b-34 p-t-27">
-              Connexion
-            </span>
-
-            <div class="wrap-input100 validate-input" data-validate="Enter username">
-              <input id="user" class="input100" type="text" name="username" placeholder="Nom d'utilisateur">
-              <span class="focus-input100" data-placeholder="&#xf207;"></span>
+          <!-- Formulaire-->
+          <form id="echeancier" action="" onsubmit="" method="POST">
+            <!-- Formulaire dinsertion dinformation client-->
+            <div class="bg-blue p-4 my-4">
+              <hr class="divider">
+              <h2 class="text-center text-lg  my-0">
+                <strong>Information Client</strong>
+              </h2>
+              <hr class="divider">
+              <div class="row align-center">
+                 <!-- Colonne de label-->
+                <div class="col-lg-2 ">
+                    <label class="text-heading">Prenom</label>
+                    <label class="text-heading">Nom</label>
+                    <label class="text-heading">Telephone</label>
+                    <label class="text-heading">Adresse</label>
+                </div>
+                 <!-- Colonne de textField-->
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" placeholder="Ex: Cédric" id="prenomText">
+                    <input type="text" class="form-control" placeholder="Ex: Léveillé" id="nomText">
+                    <input type="text" class="form-control" placeholder="Ex: 613-333-4444" id="telephoneText">
+                    <input type="text" class="form-control" placeholder="Ex: 123 Rue" id="adresseText">
+                </div>
+              </div>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate="Enter password">
-              <input id="password" class="input100" type="password" name="password" placeholder="Mot de Passe">
-              <span class="focus-input100" data-placeholder="&#xf191;"></span>
-            </div>
+            <!-- Formulaire dinsertion d'echeancier-->
+            <div class="bg-blue p-4 my-4">
+              <hr class="divider">
+              <h2 class="text-center text-lg my-0">
+                <strong>Echeancier</strong>
+              </h2>
+              <hr class="divider">
 
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn">
-                Se connecter
-              </button>
-            </div>
-
-            <div class="text-center p-t-90">
-              <a class="txt1" href="#">
-              </a>
+              <div class="row align-center">
+                  <!-- Colonne de label-->
+                 <div class="col-lg-2 ">
+                     <label class="text-heading">Poduit 1</label>
+                     <label class="text-heading">Poduit 2</label>
+                     <label class="text-heading">Poduit 3</label>
+                     <label class="text-heading">Date de livaraison</label>
+                 </div>
+                  <!-- Colonne de textField-->
+                 <div class="col-lg-5">
+                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit1Text">
+                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit2Text">
+                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit3Text">
+                     <input type="text" class="form-control" placeholder="Ex: 01-05-2018" id="dateText">
+                 </div>
+               </div>
             </div>
           </form>
         </div>
