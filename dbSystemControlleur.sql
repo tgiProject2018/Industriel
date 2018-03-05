@@ -54,6 +54,7 @@ CREATE TABLE `tblclient` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `prenom` varchar(50) DEFAULT NULL,
   `nom` varchar(50) DEFAULT NULL,
+  `adresse` varchar(50) DEFAULT NULL,
   `utilisateur` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
