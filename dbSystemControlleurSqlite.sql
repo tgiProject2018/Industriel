@@ -11,7 +11,7 @@ id integer primary key autoincrement,
 temperature real,
 quantite real,
 niveau real,
-dateProduction numeric);
+date numeric);
 CREATE TABLE tblproduit (
 id integer primary key autoincrement,
 type text,
