@@ -54,8 +54,8 @@ CREATE TABLE `tblclient` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `prenom` varchar(50) DEFAULT NULL,
   `nom` varchar(50) DEFAULT NULL,
-  `Utilisateur` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `utilisateur` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,7 +81,7 @@ CREATE TABLE `tblmelange` (
   `temperature` double DEFAULT NULL,
   `quantite` double DEFAULT NULL,
   `niveau` double DEFAULT NULL,
-  `dateProduction` date DEFAULT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
