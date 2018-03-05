@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <?php
 
-    // On inclus notre fichier de connexion à la bdo
+   /* // On inclus notre fichier de connexion à la bdo
     // =============================================================================================
-    include('DataLayer/BusinessLayer/connection.php');
+		//include('DataLayer/BusinessLayer/connection.php');
     // =============================================================================================
     
     // On start la session
@@ -60,7 +59,18 @@
         }
         // *****************************************************************************************
     }
-    // =============================================================================================
+   */ // =============================================================================================
+
+/*session_start();
+include("functions.php");
+if(isset($_SESSION["user_id"])) {
+	if(isLoginSessionExpired()) {
+	echo '<script type="text/javascript">alert("Login Session is Expired. Please Login Again")</script>';
+		header("Location:logout.php?session_expired=1");
+	}
+}else{
+	header("Location:Login.html");
+}*/
 ?>
 
 <head>
@@ -116,43 +126,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="index.php">Accueil
-            </a>
+            <a class="nav-link text-uppercase text-expanded " href="index.php">Ech&eacute;anci&eacute;</a>
           </li>
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="nouvelles.php">Nouvelles</a>
+            <a class="nav-link text-uppercase text-expanded current" href="nouvelles.php">Liste de Client</a>
           </li>
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="achats.php">Achats</a>
+            <a class="nav-link text-uppercase text-expanded" href="achats.php">Historique</a>
             <span class="sr-only">(current)</span>
           </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="activites.php">Activit&eacutes</a>
-          </li>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="contact.php">Contact</a>
-          </li>          
-          <?php
-          if(isset($_SESSION['admin_utilisateur'])) {
-         ?>
-         <li class="nav-item active px-lg-2">
-         <a class="nav-link text-uppercase text-expanded" href="connexionForm.php">Déconnexion</a>
-         </a>
-         </li>
-         <?php
-           }
-           else {
-             ?>
-          <li class="nav-item active px-lg-2">
-           <a class="nav-link text-uppercase text-expanded" href="connexionForm.php">Connexion</a>
-         </a>
-         </li>
-         <?php
-           }
-         ?>
-          <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="admin.php">Admin</a>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -179,49 +162,133 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="css/util.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/util2.css">
+  <link rel="stylesheet" type="text/css" href="css/main2.css">
   <!--===============================================================================================-->
 
   <!-- Container contenant le login form -->
-  <!--===============================================================================================-->
-  <link href="css/business-casual.css" rel="stylesheet">
-  <div class="limiter">
-    <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100">
-          <form id="login" class="login100-form validate-form" onsubmit="connexion()" method="POST">
-            <span class="login100-form-logo" style="background-image: URL(img/committee3.png)">
-            </span>
 
-            <span class="login100-form-title p-b-34 p-t-27">
-              Connexion
-            </span>
-
-            <div class="wrap-input100 validate-input" data-validate="Enter username">
-              <input id="user" class="input100" type="text" name="username" placeholder="Nom d'utilisateur">
-              <span class="focus-input100" data-placeholder="&#xf207;"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input" data-validate="Enter password">
-              <input id="password" class="input100" type="password" name="password" placeholder="Mot de Passe">
-              <span class="focus-input100" data-placeholder="&#xf191;"></span>
-            </div>
-
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn">
-                Se connecter
-              </button>
-            </div>
-
-            <div class="text-center p-t-90">
-              <a class="txt1" href="#">
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
     <!--===============================================================================================-->
+	<div >
+	<form>
+	<input type="text" name="search" placeholder="Search..">
+	</form>
+	</div>
+	<div class="table100 ver5 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Nom</th>
+									<th class="cell100 column2">Prenom</th>
+									<th class="cell100 column3">Adresse</th>
+									<th class="cell100 column4">NTelephone</th>
+									<th class="cell100 column4"></th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">Erwin</td>
+									<td class="cell100 column2">Nzia</td>
+									<td class="cell100 column3">298 everest pvt</td>
+									<td class="cell100 column4">6132601000</td>
+									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
+								</tr>
+
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+		<?php
+			/*include ("Fonctions/ClientDAO.php");
+			$evenementdao= new EvenementDAO();
+
+			//on commence par recuperer les champs
+
+			$obj= $evenementdao->getEvenements();
+			for($i=0;$i<count($obj);$i++)	{
+				$offset=$i+1;
+				echo "<div class='divEvenement'>";
+				echo "<center><h3><u>&Eacutevenement #".$obj[$i]->getNom()."</u></h3></center>";
+				echo "<h3>Nom: ".$obj[$i]->getPrenom()."</h3>";
+				echo "<h3>Description: ".$obj[$i]->getAdresse()."</h3>";
+				echo "<h3>Date: ".$obj[$i]->getNumero()."</h3>";
+				echo "</div>";
+	
+		}*/
+		?>
+	
 
     <!--===============================================================================================-->
     <div id="dropDownSelect1"></div>
@@ -230,6 +297,18 @@
 
     <!-- Javascript -->
     <!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -247,12 +326,12 @@
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
     <!--===============================================================================================-->
-
+	
     <!-- Footer -->
     <!--===============================================================================================-->
     <footer class="bg-faded text-center py-5">
       <div class="container">
-        <p class="m-0">Copyright &copy; Ivaco Loisirs 2017</p>
+        <p class="m-0">Copyright &copy; ECJ TGI 2018</p>
       </div>
     </footer>
     <!--===============================================================================================-->
