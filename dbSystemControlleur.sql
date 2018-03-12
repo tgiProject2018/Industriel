@@ -18,6 +18,9 @@
 --
 -- Table structure for table `tblassoclientmelange`
 --
+drop database if exists dbsystemcontrolleur;
+create database dbsystemcontrolleur;
+use dbsystemcontrolleur;
 
 DROP TABLE IF EXISTS `tblassoclientmelange`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
