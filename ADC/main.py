@@ -1,29 +1,36 @@
-import Adafruit_ADS1015
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import ADS1015 as ADC
+#import Thermometre as Therm
+
 import threading
+import time
 
+# Instanciation des capteurs
+adc = ADC.ADS1015()
+#therm = Thermometre()
 
+# Fonction retournant le niveau de liquide courant
+def get_level():
+    adc.configure()
+    lvl = adc.read_level()
+    return lvl
 
-class Tache_ReadADS1015(threading.Thread):
-    def __init__(self, threadID, name, counter):
-        self.threadID = threadID
-        self.name = name
-        self.counter = counter
+# Fonction retournant la température courante
+def get_temp():
+    #therm.configure()
+    temp = 1#therm.read_temp()
+    return temp
 
-    def run(self):
-        ads1015 = ADS1015()
-        while True:
-            ads1015.read_level()
+def save_current_user_data():
+    return
 
+def config_date(sDate):
+    return
 
-class Tache_ReadTemp(threading.Thread):
-    def __init__(self, threadID, name, counter):
-        self.threadID = threadID
-        self.name = name
-        self.counter = counter
-    def run(self):
-        therm = Temp()
-        while True:
-            therm.read_temp()
+def send_data(ip):
+    return
 
 class Tache_Shell(threading.Thread):
     def __init__(self, threadID, name, counter):
@@ -31,13 +38,12 @@ class Tache_Shell(threading.Thread):
         self.name = name
         self.counter = counter
     def run(self):
-        IndustrielShell().cmdloop()
+        #IndustrielShell().cmdloop()
+        while True:
+            print(get_level())
+            time.sleep(2)
 
 ##main
-#tacheADS1015 = Tache_ReadADS1015(1, "tache_ADS1015", 1)
-tacheTemperature = Tache_ReadTemp(2, "tache_Temperature", 2)
 tacheShell = Tache_Shell(1, "tache_Shell", 1)
 
-#tacheADS1015.start()
-tacheTemperature.start()
 tacheShell.start()
