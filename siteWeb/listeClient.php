@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 
-   /* // On inclus notre fichier de connexion ï¿½ la bdo
+   /* // On inclus notre fichier de connexion à la bdo
     // =============================================================================================
 		//include('DataLayer/BusinessLayer/connection.php');
     // =============================================================================================
@@ -12,18 +12,18 @@
     session_start();
     // =============================================================================================
     
-    // On fait certain si le user est deja login de le redirect tout de suite ï¿½ sign out
+    // On fait certain si le user est deja login de le redirect tout de suite à sign out
     // =============================================================================================
     if(isset($_SESSION['admin_utilisateur'])) {
     header("location: deconnexionForm.php");
     } 
     // =============================================================================================
     
-    // On recoit la requï¿½te (le login)
+    // On recoit la requête (le login)
     // =============================================================================================
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        // Le username et password d'entrï¿½
+        // Le username et password d'entré
         // *****************************************************************************************
         $utilisateur = mysqli_real_escape_string($db,$_POST['username']);
         $motdepasse = mysqli_real_escape_string($db,$_POST['password']); 
@@ -51,11 +51,11 @@
         }
         // *****************************************************************************************
         
-        // Les donnï¿½es entrï¿½es par le user etait pas bonne
+        // Les données entrées par le user etait pas bonne
         // *****************************************************************************************
         else {
-          $error = "Vos donnï¿½es entrï¿½es sont invalides.";
-          echo "<script type='text/javascript'>alert('Donnï¿½es Invalides');</script>";
+          $error = "Vos données entrées sont invalides.";
+          echo "<script type='text/javascript'>alert('Données Invalides');</script>";
         }
         // *****************************************************************************************
     }
@@ -72,6 +72,9 @@ if(isset($_SESSION["user_id"])) {
 	header("Location:Login.html");
 }*/
 ?>
+<?php
+								
+									?>
 
 <head>
 
@@ -89,27 +92,30 @@ if(isset($_SESSION["user_id"])) {
   <!--===============================================================================================-->
 
   <!-- Bootstrap core CSS -->
-
+  
+  
   <!-- Custom fonts for this template -->
   <!--===============================================================================================-->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
     rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
     rel="stylesheet" type="text/css">
+	
   <!--===============================================================================================-->
   <!-- Custom styles for this template -->
   <!--===============================================================================================-->
   <link href="css/business-casual.css" rel="stylesheet">
   <link rel="icon" href="img/committee.png">
   <!--===============================================================================================-->
-
+	
+  
 </head>
 
 <body>
 
   <!-- Titre et adresse -->
   <!--===============================================================================================-->
-  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Comit&eacute de Loisirs d'Ivaco</div>
+  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Comit&eacute; de Loisirs d'Ivaco</div>
   <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
     1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
   <!--===============================================================================================-->
@@ -160,7 +166,8 @@ if(isset($_SESSION["user_id"])) {
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
   <!--===============================================================================================-->
-
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/util2.css">
   <link rel="stylesheet" type="text/css" href="css/main2.css">
   <!--===============================================================================================-->
@@ -170,7 +177,9 @@ if(isset($_SESSION["user_id"])) {
     <!--===============================================================================================-->
 	<div >
 	<form>
-	<input type="text" name="search" placeholder="Search..">
+		<fieldset>
+			<input id="search" type="text"  name="search" placeholder="Search..">
+		</fieldset>
 	</form>
 	</div>
 	<div class="table100 ver5 m-b-110">
@@ -182,7 +191,7 @@ if(isset($_SESSION["user_id"])) {
 									<th class="cell100 column2">Prenom</th>
 									<th class="cell100 column3">Adresse</th>
 									<th class="cell100 column4">NTelephone</th>
-									<th class="cell100 column4"></th>
+									<th class="cell100 column5"></th>
 								</tr>
 							</thead>
 						</table>
@@ -191,102 +200,67 @@ if(isset($_SESSION["user_id"])) {
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
+								
 
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
+								<?php
+									include ("Fonctions/ClientDAO.php");
+									$evenementdao= new EvenementDAO();
 
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
+									//on commence par recuperer les champs
 
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1">Erwin</td>
-									<td class="cell100 column2">Nzia</td>
-									<td class="cell100 column3">298 everest pvt</td>
-									<td class="cell100 column4">6132601000</td>
-									<td class="cell100 column5"><button type="button" onclick="alert('Hello world!')">Edit</button></td>
-								</tr>
-
+									$obj= $evenementdao->getClients();
+									for($i=0;$i<count($obj);$i++)	{
+										echo "<tr class='row100 body'>";
+										echo "<td class='cell100 column1' id = 'nom".$i."'>".$obj[$i]->getNom()."</td>";
+										echo "<td class='cell100 column2' id = 'prenom".$i."'>".$obj[$i]->getPrenom()."</td>";
+										echo "<td class='cell100 column3' id = 'adresse".$i."'>".$obj[$i]->getAdresse()."</td>";
+										echo "<td class='cell100 column4' id = 'telephone".$i."'>".$obj[$i]->getTelephone()."</td>";
+										echo "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo(".$i.")'>Edit</button></td>";
+										echo "</tr>";
+	
+									}
+								?>
 								
 							</tbody>
 						</table>
 					</div>
+				
+				
+	</div>
+	<div class="form-container">
+				<div class="row">
+					<div class= "col-lg-12">
+						<center><h2><u>Modifier info client</u></h2></center><br><br>
+					</div>
 				</div>
-
-		<?php
-			/*include ("Fonctions/ClientDAO.php");
-			$evenementdao= new EvenementDAO();
-
-			//on commence par recuperer les champs
-
-			$obj= $evenementdao->getEvenements();
-			for($i=0;$i<count($obj);$i++)	{
-				$offset=$i+1;
-				echo "<div class='divEvenement'>";
-				echo "<center><h3><u>&Eacutevenement #".$obj[$i]->getNom()."</u></h3></center>";
-				echo "<h3>Nom: ".$obj[$i]->getPrenom()."</h3>";
-				echo "<h3>Description: ".$obj[$i]->getAdresse()."</h3>";
-				echo "<h3>Date: ".$obj[$i]->getNumero()."</h3>";
-				echo "</div>";
-	
-		}*/
-		?>
+				<div class="container-form">
+					<div class="row">
+						
+						<div class="col-sm">
+							<label>Nom:</label>
+							<input type="nom" id = "Nom"  class="form-change" >
+						</div>
+						<div class="col-sm">
+							<label>Prenom:</label>
+							<input type="Prenom" class="form-change" id="Prenom">
+						</div>
+						<div class="col-sm">
+							<label>Adresse:</label>
+							<input type="Adresse" class="form-change" id="Adresse">
+						</div>
+						<div class="col-sm">
+							<label>Telephone:</label>
+						<input type="Telephone" class="form-change" id="Telephone">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class= "col-lg-12">
+						<center><h2><button type='button' onClick=''>Edit</button></h2></center><br><br>
+					</div>
+				</div>
+	</div>
+		
 	
 
     <!--===============================================================================================-->
@@ -296,8 +270,8 @@ if(isset($_SESSION["user_id"])) {
 
     <!-- Javascript -->
     <!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
+	<script type="text/javascript" src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script language="JavaScript">
 		$('.js-pscroll').each(function(){
 			var ps = new PerfectScrollbar(this);
 
@@ -305,7 +279,13 @@ if(isset($_SESSION["user_id"])) {
 				ps.update();
 			})
 		});
-			
+		function getinfo($num) {
+			alert($num)
+			document.getElementById("Nom").value = document.getElementById("nom"+parseInt($num)).innerHTML;
+			document.getElementById("Prenom").value = document.getElementById("prenom"+parseInt($num)).innerHTML;
+			document.getElementById("Adresse").value = document.getElementById("adresse"+parseInt($num)).innerHTML;
+			document.getElementById("Telephone").value = document.getElementById("telephone"+parseInt($num)).innerHTML;
+			}
 		
 	</script>
     <!--===============================================================================================-->
@@ -340,6 +320,7 @@ if(isset($_SESSION["user_id"])) {
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script  src="js/rechercherTrie.js"></script>
     <!--===============================================================================================-->
 
 </body>
