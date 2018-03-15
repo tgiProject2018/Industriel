@@ -40,16 +40,18 @@ class Tache_Shell(threading.Thread):
         self.counter = counter
     def run(self):
         #IndustrielShell().cmdloop()
-        counter = 0
-        while True:
+        counter = 1
+        # Main loop for testing stubs
+        while counter <= 5:
             print("----- Lecture " + str(counter) + " -----")
             print("Niveau: " + str(get_level()))
             print("Temperature: " + str(get_temp()))
             print("----- Fin lecture " + str(counter) + " -----\n")
-            time.sleep(2)
+            time.sleep(1)
             counter+=1
 
 ##main
 tacheShell = Tache_Shell(1, "tache_Shell", 1)
 
+# Start the thread
 tacheShell.start()
