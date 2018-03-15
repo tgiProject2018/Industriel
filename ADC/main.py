@@ -13,7 +13,7 @@ adc = ADC.ADS1015()
 
 # Fonction retournant le niveau de liquide courant
 def get_level():
-    adc.configure()
+    #adc.configure()
     lvl = adc.read_level()
     return lvl
 
@@ -34,14 +34,20 @@ def send_data(ip):
 
 class Tache_Shell(threading.Thread):
     def __init__(self, threadID, name, counter):
+        threading.Thread.__init__(Tache_Shell)
         self.threadID = threadID
         self.name = name
         self.counter = counter
     def run(self):
         #IndustrielShell().cmdloop()
+        counter = 0
         while True:
-            print(get_level())
+            print("----- Lecture " + str(counter) + " -----")
+            print("Niveau: " + str(get_level()))
+            print("Temperature: " + str(get_temp()))
+            print("----- Fin lecture " + str(counter) + " -----\n")
             time.sleep(2)
+            counter+=1
 
 ##main
 tacheShell = Tache_Shell(1, "tache_Shell", 1)
