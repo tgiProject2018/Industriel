@@ -48,10 +48,31 @@ h1 {
   background-color: rgba(255, 255, 255, 0.80);
 
 }
+
+
+
+
 .bg-blue {
   background-color: rgba(104, 102, 103, 0.61);
   border: #292b2c
 }
+.text-heading{
+  margin-top: 22px;
+ margin-bottom: 22px;
+ margin-left: 0px;
+ margin-right: 0px;
+ width:100%;
+}
+.form-control{
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+.col-lg-4{
+  float: right;
+}
+
+
+
 
 .bg-overlay {
   background-color: rgba(0, 0, 0, 0.7);
@@ -84,4 +105,21 @@ footer {
   top:100%;
   bottom:0;
   z-index: 0;
+}
+*/
+.btn {
+    text-transform: uppercase;
+    border: none;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    display: block;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #2196F3;
+    border-color: #2196F3;
 }

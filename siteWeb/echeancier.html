@@ -34,7 +34,7 @@
 
   <!-- Titre et adresse -->
   <!--===============================================================================================-->
-  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Comit&eacute de Loisirs d'Ivaco</div>
+  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Mélangeur chimique</div>
   <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
     1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
   <!--===============================================================================================-->
@@ -102,107 +102,128 @@
             <strong>Echeancier</strong>
           </h2>
           <hr class="divider">
-
-          <!-- Formulaire-->
-          <form id="echeancier" action="" onsubmit="" method="POST">
-            <!-- Formulaire dinsertion dinformation client-->
-            <div class="bg-blue p-4 my-4">
-              <hr class="divider">
-              <h2 class="text-center text-lg  my-0">
-                <strong>Information Client</strong>
-              </h2>
-              <hr class="divider">
-              <div class="row align-center">
-                 <!-- Colonne de label-->
-                <div class="col-lg-2 ">
-                    <label class="text-heading">Prenom</label>
-                    <label class="text-heading">Nom</label>
-                    <label class="text-heading">Telephone</label>
-                    <label class="text-heading">Adresse</label>
-                </div>
-                 <!-- Colonne de textField-->
-                <div class="col-lg-5">
-                    <input type="text" class="form-control" placeholder="Ex: Cédric" id="prenomText">
-                    <input type="text" class="form-control" placeholder="Ex: Léveillé" id="nomText">
-                    <input type="text" class="form-control" placeholder="Ex: 613-333-4444" id="telephoneText">
-                    <input type="text" class="form-control" placeholder="Ex: 123 Rue" id="adresseText">
-                </div>
+        </div>
+        <!-- Formulaire-->
+        <form id="echeancier" action="" onsubmit="" method="POST">
+          <!-- Formulaire dinsertion dinformation client-->
+          <div class="bg-faded p-4 my-4">
+            <hr class="divider">
+            <h2 class="text-center text-lg  my-0">
+              <strong>Information Client</strong>
+            </h2>
+            <hr class="divider">
+            <div class="row" style="text-align:center">
+              <!-- Colonne d'espacement-->
+              <div class="col-lg-2"></div>
+              <!-- Colonne de label-->
+              <div class="col-lg-2">
+                <label class="text-heading t">Prenom :</label>
+                <label class="text-heading">Nom :</label>
+                <label class="text-heading">Telephone :</label>
+                <label class="text-heading">Adresse :</label>
+              </div>
+              <!-- Colonne de textField-->
+              <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="Ex: Cédric" id="prenomText">
+                <input type="text" class="form-control" placeholder="Ex: Léveillé" id="nomText">
+                <input type="text" class="form-control" placeholder="Ex: 613-333-4444" id="telephoneText">
+                <input type="text" class="form-control" placeholder="Ex: 123 Rue" id="adresseText">
               </div>
             </div>
+          </div>
+          <!-- Formulaire dinsertion d'echeancier-->
+          <div class="bg-faded p-4 my-4">
+            <hr class="divider">
+            <h2 class="text-center text-lg my-0">
+              <strong>Echeancier</strong>
+            </h2>
+            <hr class="divider">
 
-            <!-- Formulaire dinsertion d'echeancier-->
-            <div class="bg-blue p-4 my-4">
-              <hr class="divider">
-              <h2 class="text-center text-lg my-0">
-                <strong>Echeancier</strong>
-              </h2>
-              <hr class="divider">
+            <div class="row align-center">
+              <!-- Colonne d'espacement-->
+              <div class="col-lg-2"></div>
+              <!-- Colonne de label-->
+              <div class="col-lg-2 ">
+                <label class="text-heading">Poduit 1 :</label>
+                <label class="text-heading">Poduit 2 :</label>
+                <label class="text-heading">Poduit 3 :</label>
+                <label class="text-heading">Date de livaraison :</label>
+              </div>
+              <!-- Colonne de textField-->
+              <div class="col-lg-5">
+                <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit1Text">
+                <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit2Text">
+                <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit3Text">
+                <input type="text" class="form-control" placeholder="Ex: 01-05-2018" id="dateText">
+              </div>
+              </br>
 
-              <div class="row align-center">
-                  <!-- Colonne de label-->
-                 <div class="col-lg-2 ">
-                     <label class="text-heading">Poduit 1</label>
-                     <label class="text-heading">Poduit 2</label>
-                     <label class="text-heading">Poduit 3</label>
-                     <label class="text-heading">Date de livaraison</label>
-                 </div>
-                  <!-- Colonne de textField-->
-                 <div class="col-lg-5">
-                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit1Text">
-                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit2Text">
-                     <input type="text" class="form-control" placeholder="Ex: Cédric" id="produit3Text">
-                     <input type="text" class="form-control" placeholder="Ex: 01-05-2018" id="dateText">
-                 </div>
-               </div>
             </div>
-          </form>
+            <input id="Soumettre" value="Soumettre" class="btn btn-primary" type="submit" />
+          </div>
+
+        </form>
+        <div class="bg-faded p-4 my-4">
+            <!-- Titre de cette section-->
+            <hr class="divider">
+            <h2 class="text-center text-lg text-uppercase my-0">
+              <strong>Synchronisation des Donnees du melangeur</strong>
+            </h2>
+            <hr class="divider">
+            <button class="btn btn-danger " onclick="Synchronisation()">Synchroniser</button>
         </div>
       </div>
     </div>
-    <!--===============================================================================================-->
+  </div>
+  <!--===============================================================================================-->
 
 
-    <!--===============================================================================================-->
-    <div id="dropDownSelect1"></div>
-    <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  <div id="dropDownSelect1"></div>
+  <!--===============================================================================================-->
 
 
-    <!-- Javascript -->
-    <!--===============================================================================================-->
-    <!--===============================================================================================-->
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/daterangepicker/moment.min.js"></script>
-    <script src="vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/countdowntime/countdowntime.js"></script>
-    <!--===============================================================================================-->
-    <script src="js/main.js"></script>
-    <!--===============================================================================================-->
+  <!-- Javascript -->
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/daterangepicker/moment.min.js"></script>
+  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
+  <!--===============================================================================================-->
 
-    <!-- Footer -->
-    <!--===============================================================================================-->
-    <footer class="bg-faded text-center py-5">
-      <div class="container">
-        <p class="m-0">Copyright &copy; Ivaco Loisirs 2017</p>
-      </div>
-    </footer>
-    <!--===============================================================================================-->
+  <!-- Footer -->
+  <!--===============================================================================================-->
+  <footer class="bg-faded text-center py-5">
+    <div class="container">
+      <p class="m-0">Copyright &copy; Mélangeur Industriel 2018</p>
+    </div>
+  </footer>
+  <!--===============================================================================================-->
 
-    <!-- Bootstrap core JavaScript -->
-    <!--===============================================================================================-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
+  <!-- Bootstrap core JavaScript -->
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
 
 </body>
+<script>
+    function Synchronisation() {
+        alert("Synchronisation Reussie");
+    }
+    </script>
 
 </html>
