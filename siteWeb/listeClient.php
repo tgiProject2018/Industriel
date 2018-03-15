@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 
-   /* // On inclus notre fichier de connexion à la bdo
+   /* // On inclus notre fichier de connexion ï¿½ la bdo
     // =============================================================================================
 		//include('DataLayer/BusinessLayer/connection.php');
     // =============================================================================================
@@ -12,18 +12,18 @@
     session_start();
     // =============================================================================================
     
-    // On fait certain si le user est deja login de le redirect tout de suite à sign out
+    // On fait certain si le user est deja login de le redirect tout de suite ï¿½ sign out
     // =============================================================================================
     if(isset($_SESSION['admin_utilisateur'])) {
     header("location: deconnexionForm.php");
     } 
     // =============================================================================================
     
-    // On recoit la requête (le login)
+    // On recoit la requï¿½te (le login)
     // =============================================================================================
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         
-        // Le username et password d'entré
+        // Le username et password d'entrï¿½
         // *****************************************************************************************
         $utilisateur = mysqli_real_escape_string($db,$_POST['username']);
         $motdepasse = mysqli_real_escape_string($db,$_POST['password']); 
@@ -51,11 +51,11 @@
         }
         // *****************************************************************************************
         
-        // Les données entrées par le user etait pas bonne
+        // Les donnï¿½es entrï¿½es par le user etait pas bonne
         // *****************************************************************************************
         else {
-          $error = "Vos données entrées sont invalides.";
-          echo "<script type='text/javascript'>alert('Données Invalides');</script>";
+          $error = "Vos donnï¿½es entrï¿½es sont invalides.";
+          echo "<script type='text/javascript'>alert('Donnï¿½es Invalides');</script>";
         }
         // *****************************************************************************************
     }
@@ -132,16 +132,16 @@ if(isset($_SESSION["user_id"])) {
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded " href="index.php">Ech&eacute;anci&eacute;</a>
+            <a class="nav-link text-uppercase text-expanded" href="echeancier.html">Ã‰chÃ©ancier
+            </a>
           </li>
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded current" href="nouvelles.php">Liste de Client</a>
+            <a class="nav-link text-uppercase text-expanded" href="">Liste de Clients</a>
           </li>
           <li class="nav-item px-lg-2">
-            <a class="nav-link text-uppercase text-expanded" href="achats.php">Historique</a>
+            <a class="nav-link text-uppercase text-expanded" href="historique.html">Historique</a>
             <span class="sr-only">(current)</span>
           </li>
-          
         </ul>
       </div>
     </div>
