@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
 });
 // ============================================================================================================
 
-<<<<<<< HEAD
 // Chargement de la page consoleetudiant.html
 // ============================================================================================================
 app.get('/echeancier', function (req, res) {
@@ -34,12 +33,9 @@ app.get('/historique', function (req, res) {
 // Chargement de la page login.html
 // ============================================================================================================
 app.get('/listeClient', function (req, res) {
-  res.sendfile(__dirname + '/listeClient.php');
+  res.sendfile(__dirname + '/listeClient.html');
 });
 // ============================================================================================================
-=======
-
->>>>>>> 323d31d87ce5ccdacd0b069722d87975536d061d
 
 
 
