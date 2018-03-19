@@ -101,6 +101,7 @@
   <!-- Container contenant le login form -->
 
     <!--===============================================================================================-->
+	
 	<div >
 	<form>
 		<fieldset>
@@ -126,8 +127,14 @@
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
-								
-
+							<tr class="row100 body">
+							<td class="cell100 column1">Erwin</td>
+							<td class="cell100 column2">Nzia</td>
+							<td class="cell100 column3">298 everest pvt</td>
+							<td class="cell100 column4">6135601000</td>
+							<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo()'>Edit</button></td>
+							</tr>
+				
 								
 								
 							</tbody>
@@ -136,40 +143,46 @@
 				
 				
 	</div>
+	
+    
+    <div class="container" >
 	<div class="form-container">
-				<div class="row">
-					<div class= "col-lg-12">
-						<center><h2><u>Modifier info client</u></h2></center><br><br>
-					</div>
-				</div>
-				<div class="container-form">
+		<div class="bg-faded p-4 my-4">
+            <!-- Titre de cette section-->
+            <center><hr class="divider" ></center>
+            <h2 class="text-center text-lg text-uppercase my-0">
+              <strong>Modifier Client</strong>
+            </h2>
+            <center><hr class="divider" ></center>
+            <div class="container-form">
 					<div class="row">
 						
 						<div class="col-sm">
-							<label>Nom:</label>
+							<label class="text-heading">Nom:</label>
 							<input type="nom" id = "Nom"  class="form-change" >
 						</div>
 						<div class="col-sm">
-							<label>Prenom:</label>
+							<label class="text-heading">Prenom:</label>
 							<input type="Prenom" class="form-change" id="Prenom">
 						</div>
 						<div class="col-sm">
-							<label>Adresse:</label>
+							<label class="text-heading">Adresse:</label>
 							<input type="Adresse" class="form-change" id="Adresse">
 						</div>
 						<div class="col-sm">
-							<label>Telephone:</label>
-						<input type="Telephone" class="form-change" id="Telephone">
+							<label class="text-heading">Telephone:</label>
+							<input type="Telephone" class="form-change" id="Telephone">
 						</div>
+						
 					</div>
-				</div>
-				<div class="row">
-					<div class= "col-lg-12">
-						<center><h2><button type='button' onClick=''>Edit</button></h2></center><br><br>
-					</div>
-				</div>
+			</div>
+			<br>
+			<center><input id="Soumettre" value="Soumettre" class="btn btn-primary" type="submit" /></center>
+        </div>
 	</div>
-		
+	</div>
+</div>
+
 	
 
     <!--===============================================================================================-->
