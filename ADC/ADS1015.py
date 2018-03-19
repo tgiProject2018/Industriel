@@ -23,7 +23,8 @@ class ADS1015(object):
         # On s assure qu auncune conversion n est en cours en verifiant
         # le registre OS du convertisseur
         #is_converting = _device.
-        return random.randint(0,1)
+        choix = random.randint(0,1)
+        return (100 if choix == 1 else 0)
 
     def configure(self):
         #config = 0x8000

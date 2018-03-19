@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from ADC import ADS1015 as ADC
-from Thermometre import MLX as MLX
+import fonctions
 from Shell.shell import IndustrielShell
 from Shell.sendToServer import Transfere
 
@@ -11,30 +10,6 @@ from socketIO_client import SocketIO
 import threading
 import time
 
-# Instanciation des capteurs
-adc = ADC.ADS1015()
-therm = MLX.MLX()
-
-# Fonction retournant le niveau de liquide courant
-def get_level():
-    #adc.configure()
-    lvl = adc.read_level()
-    return lvl
-
-# Fonction retournant la température courante
-def get_temp():
-    #therm.configure()
-    temp = therm.read_temp()
-    return temp
-
-def save_current_user_data():
-    return
-
-def config_date(sDate):
-    return
-
-def send_data(ip):
-    return
 
 class Tache_Shell(threading.Thread):
     def __init__(self, threadID, name, counter):

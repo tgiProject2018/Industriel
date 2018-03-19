@@ -1,7 +1,6 @@
 import cmd, sys
 from Shell.sendToServer import Transfere
-from ADC.ADS1015 import ADS1015
-from Thermometre.MLX import MLX
+import fonctions
 class IndustrielShell(cmd.Cmd):
     intro = 'Welcome Industrial , Bonjour\n'
     prompt = '>'
@@ -14,7 +13,8 @@ class IndustrielShell(cmd.Cmd):
         # self.result = GetResultat().getResultat()
 		
 		#attendre les reponse des capteurs.	
-        print('Temperature en Celcius', 10)
+        temp = fonctions.get_temp()
+        print('Temperature en Celcius', temp)
         print('Temperature prise')
 		
     def do_savecuruserdata(self, arg):
@@ -48,7 +48,8 @@ class IndustrielShell(cmd.Cmd):
 		
     def do_getlevel(self, arg):
         'Fait acquisition du niveau de liquide et affichage console'
-        print('Hauteur atteinte en cm', 10)
+        niveau = fonctions.get_level()
+        print('Hauteur atteinte en cm', niveau)
         print('Niveau du liquide pris')
         
 		
