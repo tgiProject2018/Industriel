@@ -26,7 +26,7 @@ class ADS1015(object):
         return random.randint(0,1)
 
     def configure(self):
-        config = 0x8000
+        #config = 0x8000
         #config |= 
         self.data_rate = 0x0080 # 1600
         self.mux = 0 # Config par defaut

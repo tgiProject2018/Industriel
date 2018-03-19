@@ -3,6 +3,8 @@
 
 from ADC import ADS1015 as ADC
 from Thermometre import MLX as MLX
+from Shell.shell import IndustrielShell
+from Shell.sendToServer import Transfere
 
 #import Thermometre as Therm
 from socketIO_client import SocketIO
@@ -40,17 +42,18 @@ class Tache_Shell(threading.Thread):
         self.threadID = threadID
         self.name = name
         self.counter = counter
+
     def run(self):
-        #IndustrielShell().cmdloop()
-        counter = 1
+        IndustrielShell().cmdloop()
+        # counter = 1
         # Main loop for testing stubs
-        while counter <= 5:
-            print("----- Lecture " + str(counter) + " -----")
-            print("Niveau: " + str(get_level()))
-            print("Temperature: " + str(get_temp()))
-            print("----- Fin lecture " + str(counter) + " -----\n")
-            time.sleep(1)
-            counter+=1
+        # while counter <= 5:
+        #     print("----- Lecture " + str(counter) + " -----")
+        #     print("Niveau: " + str(get_level()))
+        #     print("Temperature: " + str(get_temp()))
+        #     print("----- Fin lecture " + str(counter) + " -----\n")
+        #     time.sleep(1)
+        #     counter+=1
 
 class Tache_Flask(threading.Thread):
     def __init__(self, threadID, name, counter):
@@ -58,17 +61,18 @@ class Tache_Flask(threading.Thread):
         self.threadID = threadID
         self.name = name
         self.counter = counter
+
     def run(self):
         #IndustrielUI.loop()
         counter = 1
         # Main loop for testing stubs
-        while counter <= 5:
-            print("----- Lecture " + str(counter) + " -----")
-            print("Niveau: " + str(get_level()))
-            print("Temperature: " + str(get_temp()))
-            print("----- Fin lecture " + str(counter) + " -----\n")
-            time.sleep(1)
-            counter+=1
+        # while counter <= 5:
+        #     print("----- Lecture " + str(counter) + " -----")
+        #     print("Niveau: " + str(get_level()))
+        #     print("Temperature: " + str(get_temp()))
+        #     print("----- Fin lecture " + str(counter) + " -----\n")
+        #     time.sleep(1)
+        #     counter+=1
 # main
 
 # Écoute de l'application web par sockets
