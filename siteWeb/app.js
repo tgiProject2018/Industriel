@@ -1,9 +1,14 @@
-var app = require('express')(),
-    server = require('http').createServer(app),
+var express = require('express');
+const path = require('path');
+const app = express();
+    var server = require('http').createServer(app),
     io = require('socket.io').listen(server),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs');
     
+// On recupere mon image de background
+
+app.use(express.static(__dirname + '/public'));
 // Chargement de la page index.html
 // ============================================================================================================
 app.get('/', function (req, res) {
@@ -13,31 +18,27 @@ app.get('/', function (req, res) {
 
 // Chargement de la page consoleetudiant.html
 // ============================================================================================================
-app.get('/consoleEtudiant', function (req, res) {
-  res.sendfile(__dirname + '/consoleEtudiant.html');
+app.get('/echeancier', function (req, res) {
+  res.sendfile(__dirname + '/echeancier.html');
 });
 // ============================================================================================================
 
 // Chargement de la page consoleprofesseur.html
 // ============================================================================================================
-app.get('/consoleProfesseur', function (req, res) {
-  res.sendfile(__dirname + '/consoleProfesseur.html');
+app.get('/historique', function (req, res) {
+  res.sendfile(__dirname + '/historique.html');
 });
 // ============================================================================================================
 
 // Chargement de la page login.html
 // ============================================================================================================
-app.get('/login', function (req, res) {
-  res.sendfile(__dirname + '/login.html');
+app.get('/listeClient', function (req, res) {
+  res.sendfile(__dirname + '/listeClient.php');
 });
 // ============================================================================================================
 
-// On recupere mon image de background
-// ============================================================================================================
-app.get('/school', function (req, res) {
-    res.sendfile(__dirname + '/img/school3.jpeg');
-  });
-// ============================================================================================================
+
+
 io.sockets.on('connection', function (socket) {
     // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
     // ============================================================================================================
