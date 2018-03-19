@@ -104,8 +104,8 @@ if(isset($_SESSION["user_id"])) {
   <!--===============================================================================================-->
   <!-- Custom styles for this template -->
   <!--===============================================================================================-->
-  <link href="public/css/business-casual.css" rel="stylesheet">
-  <link rel="icon" href="public/img/committee.png">
+  <link href=" /css/business-casual.css" rel="stylesheet">
+  <link rel="icon" href=" /img/committee.png">
   <!--===============================================================================================-->
 	
   
@@ -150,26 +150,26 @@ if(isset($_SESSION["user_id"])) {
 
   <!-- CSS pour la page -->
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href=" /fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/fonts/iconic/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" type="text/css" href=" /fonts/iconic/css/material-design-iconic-font.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/animate/animate.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/css-hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/css-hamburgers/hamburgers.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/animsition/css/animsition.min.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/animsition/css/animsition.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/select2/select2.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/vendor/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" type="text/css" href=" /vendor/daterangepicker/daterangepicker.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="public/css/util.css">
-  <link rel="stylesheet" type="text/css" href="public/css/main.css">
-  <link rel="stylesheet" type="text/css" href="public/css/util2.css">
-  <link rel="stylesheet" type="text/css" href="public/css/main2.css">
+  <link rel="stylesheet" type="text/css" href=" /css/util.css">
+  <link rel="stylesheet" type="text/css" href=" /css/main.css">
+  <link rel="stylesheet" type="text/css" href=" /css/util2.css">
+  <link rel="stylesheet" type="text/css" href=" /css/main2.css">
   <!--===============================================================================================-->
 
   <!-- Container contenant le login form -->
@@ -289,21 +289,21 @@ if(isset($_SESSION["user_id"])) {
 		
 	</script>
     <!--===============================================================================================-->
-    <script src="public/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src=" /vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
-    <script src="public/vendor/animsition/js/animsition.min.js"></script>
+    <script src=" /vendor/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->
-    <script src="public/vendor/bootstrap/js/popper.js"></script>
-    <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src=" /vendor/bootstrap/js/popper.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="public/vendor/select2/select2.min.js"></script>
+    <script src=" /vendor/select2/select2.min.js"></script>
     <!--===============================================================================================-->
-    <script src="public/vendor/daterangepicker/moment.min.js"></script>
-    <script src="public/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src=" /vendor/daterangepicker/moment.min.js"></script>
+    <script src=" /vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
-    <script src="public/vendor/countdowntime/countdowntime.js"></script>
+    <script src=" /vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
-    <script src="public/js/main.js"></script>
+    <script src=" /js/main.js"></script>
     <!--===============================================================================================-->
 	
     <!-- Footer -->
@@ -317,10 +317,10 @@ if(isset($_SESSION["user_id"])) {
 
     <!-- Bootstrap core JavaScript -->
     <!--===============================================================================================-->
-    <script src="public/vendor/jquery/jquery.min.js"></script>
-    <script src="public/vendor/popper/popper.min.js"></script>
-    <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script  src="public/js/rechercherTrie.js"></script>
+    <script src=" /vendor/jquery/jquery.min.js"></script>
+    <script src=" /vendor/popper/popper.min.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script  src=" /js/rechercherTrie.js"></script>
     <!--===============================================================================================-->
 
 </body>
