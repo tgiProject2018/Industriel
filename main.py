@@ -4,7 +4,7 @@
 import fonctions
 from Shell.shell import IndustrielShell
 from Shell.sendToServer import Transfere
-
+import fonctions
 #import Thermometre as Therm
 from socketIO_client import SocketIO
 import threading
@@ -38,16 +38,16 @@ class Tache_Flask(threading.Thread):
         self.counter = counter
 
     def run(self):
-        #IndustrielUI.loop()
+        # IndustrielUI.loop()
         counter = 1
         # Main loop for testing stubs
-        # while counter <= 5:
-        #     print("----- Lecture " + str(counter) + " -----")
-        #     print("Niveau: " + str(get_level()))
-        #     print("Temperature: " + str(get_temp()))
-        #     print("----- Fin lecture " + str(counter) + " -----\n")
-        #     time.sleep(1)
-        #     counter+=1
+        while counter <= 5:
+            print("----- Lecture " + str(counter) + " -----")
+            print("Niveau: " + str(fonctions.get_level()))
+            print("Temperature: " + str(fonctions.get_temp()))
+            print("----- Fin lecture " + str(counter) + " -----\n")
+            time.sleep(1)
+            counter+=1
 # main
 
 # Écoute de l'application web par sockets
