@@ -25,20 +25,11 @@ def on_message(*args):
   db.commit()
   db.close()
   
-def on_nouveau_client(*args):
-  dic = args[0]
-  print (dic)
-  db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="", db="classevirtuel")
-  cursor = db.cursor()
-  sql = "INSERT INTO presence(`Nom`, `datePresent`) VALUES (%s,Now())"
-  cursor.execute(sql,(dic,))
-  db.commit()
-  db.close()
 def on_donneDB_Server():
   print ("database")
-  db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="", db="siteweb")
+  db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="", db="dbsystemcontrolleur")
   cursor = db.cursor()
-  sql = "SELECT `Nom`,`Prenom`,`Adresse`,`Telephone` FROM `client` "
+  sql = "SELECT `nom`,`prenom`,`adresse` FROM `tblclient` "
   cursor.execute(sql)
   results = cursor.fetchall()
   socketIO.emit('getDataBase',results)
@@ -51,7 +42,6 @@ socketIO.on('connect', on_connect)
 socketIO.on('disconnect', on_disconnect)
 socketIO.on('reconnect', on_reconnect)
 socketIO.on('messageServer', on_message)
-socketIO.on('nouveau_client_Server', on_nouveau_client)
 socketIO.on('donneDB_Server', on_donneDB_Server)
 
 
