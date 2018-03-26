@@ -1,10 +1,11 @@
 var express = require('express');
 const path = require('path');
 const app = express();
-    var server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
-    ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
-    fs = require('fs');
+var server = require('http').createServer(app),
+
+io = require('socket.io').listen(server),
+ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
+fs = require('fs');
     
 // On recupere mon image de background
 
@@ -58,7 +59,16 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit('nouveau_professeur', pseudo);
     });
     // ============================================================================================================
-
+	//Rajouté par Erwin rempli le tableau
+	socket.on('getDBClient', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('donneDB_Server');
+    }); 
+	socket.on('getDataBase', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('DataBase', data);
+    });
     // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
     // ============================================================================================================
     socket.on('login_formulaire', function(username,password) {
