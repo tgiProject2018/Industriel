@@ -63,7 +63,7 @@ io.sockets.on('connection', function (socket) {
         //message = ent.encode(message);
         socket.broadcast.emit('donneDB_Server');
     }); 
-	socket.on('getDataBase', function(data) {
+	socket.on('afficherClient', function(data) {
         //data = ent.encode(data);
         socket.data = data;
         socket.broadcast.emit('DataBase', data);

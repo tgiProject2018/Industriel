@@ -71,7 +71,7 @@
 
   <!-- Navigation -->
   <!--===============================================================================================-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4 row">
+  <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4 ">
     <div class="container col-12">
       <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -111,7 +111,7 @@
 	</form>
 	<br/>
 	</div>
-	<div class="table100 ver5 m-b-110">
+	<div class="table100 ver2 m-b-110">
 					<div class="table100-head">
 						<table>
 							<thead>
@@ -119,8 +119,7 @@
 									<th class="cell100 column1">Nom</th>
 									<th class="cell100 column2">Prenom</th>
 									<th class="cell100 column3">Adresse</th>
-									<th class="cell100 column4">NTelephone</th>
-									<th class="cell100 column5"></th>
+									<th class="cell100 column4"></th>
 								</tr>
 							</thead>
 						</table>
@@ -133,7 +132,6 @@
 							<td class="cell100 column1">Erwin</td>
 							<td class="cell100 column2">Nzia</td>
 							<td class="cell100 column3">298 everest pvt</td>
-							<td class="cell100 column4">6135601000</td>
 							<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo()'>Edit</button></td>
 							</tr>
 							</tbody>
@@ -167,10 +165,6 @@
 						<div class="col-sm">
 							<label class="text-heading">Adresse:</label>
 							<input type="Adresse" class="form-change" id="Adresse">
-						</div>
-						<div class="col-sm">
-							<label class="text-heading">Telephone:</label>
-							<input type="Telephone" class="form-change" id="Telephone">
 						</div>
 						
 					</div>
@@ -208,13 +202,11 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
 			console.log(row.fulldata);
 			cell1.innerHTML =  String(rows[i][0]);
 			cell2.innerHTML =  String(rows[i][1]);
 			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			cell4.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
 			
 			//css pour les cellules
 			row.className='row100 body';
@@ -222,195 +214,10 @@
 			cell2.className='cell100 column2';
 			cell3.className='cell100 column3';
 			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
 			cell1.id='nom'+i;
 			cell2.id='prenom'+i;
 			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  
-        for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
-			var row = table.insertRow(i);
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  String(rows[i][3]);
-			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
-			
-			//css pour les cellules
-			row.className='row100 body';
-			cell1.className='cell100 column1';
-			cell2.className='cell100 column2';
-			cell3.className='cell100 column3';
-			cell4.className='cell100 column4';
-			cell5.className='cell100 column5';
-			cell1.id='nom'+i;
-			cell2.id='prenom'+i;
-			cell3.id='adresse'+i;
-			cell4.id='telephone'+i;
-        }  
+        }    
         console.log(rows);
       });
 		
@@ -420,7 +227,6 @@
 			document.getElementById("Nom").value = document.getElementById("nom"+parseInt($num)).innerHTML;
 			document.getElementById("Prenom").value = document.getElementById("prenom"+parseInt($num)).innerHTML;
 			document.getElementById("Adresse").value = document.getElementById("adresse"+parseInt($num)).innerHTML;
-			document.getElementById("Telephone").value = document.getElementById("telephone"+parseInt($num)).innerHTML;
 			}
 		
 	</script>

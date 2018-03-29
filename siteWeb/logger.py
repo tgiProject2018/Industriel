@@ -14,6 +14,7 @@ def on_disconnect():
 
 def on_reconnect():
     print('reconnect')
+    
 def on_donneDB_Server():
   print ("database")
   db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="", db="siteweb")
@@ -21,7 +22,7 @@ def on_donneDB_Server():
   sql = "SELECT `Nom`,`Prenom`,`Adresse`,`Telephone` FROM `client` "
   cursor.execute(sql)
   results = cursor.fetchall()
-  socketIO.emit('getDataBase',results)
+  socketIO.emit('afficherClient',results)
   db.commit()
   db.close()  
   
