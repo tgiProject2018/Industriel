@@ -2,7 +2,6 @@ var express = require('express');
 const path = require('path');
 const app = express();
 var server = require('http').createServer(app),
-
 io = require('socket.io').listen(server),
 ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
 fs = require('fs');

@@ -33,7 +33,30 @@
   <link href=" /css/business-casual.css" rel="stylesheet">
   <link rel="icon" href=" /img/committee.png">
   <!--===============================================================================================-->
-	
+	<!-- CSS pour la page -->
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href=" /css/util.css">
+  <link rel="stylesheet" type="text/css" href=" /css/main.css">
+  <link rel="stylesheet" type="text/css" href=" /css/util2.css">
+  <link rel="stylesheet" type="text/css" href=" /css/main2.css">
+  <!--===============================================================================================-->
+
   
 </head>
 
@@ -74,40 +97,19 @@
   </nav>
   <!--===============================================================================================-->
 
-  <!-- CSS pour la page -->
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/bootstrap/css/bootstrap.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /fonts/iconic/css/material-design-iconic-font.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/animate/animate.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/css-hamburgers/hamburgers.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/animsition/css/animsition.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/select2/select2.min.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /vendor/daterangepicker/daterangepicker.css">
-  <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href=" /css/util.css">
-  <link rel="stylesheet" type="text/css" href=" /css/main.css">
-  <link rel="stylesheet" type="text/css" href=" /css/util2.css">
-  <link rel="stylesheet" type="text/css" href=" /css/main2.css">
-  <!--===============================================================================================-->
-
+  
   <!-- Container contenant le login form -->
 
     <!--===============================================================================================-->
 	
 	<div >
+	<br/>
 	<form>
 		<fieldset>
-			<input id="search" type="text"  name="search" placeholder="Search..">
+			<input id="search" type="text"  name="search" placeholder="Search.." color="black">
 		</fieldset>
 	</form>
+	<br/>
 	</div>
 	<div class="table100 ver5 m-b-110">
 					<div class="table100-head">
@@ -134,9 +136,6 @@
 							<td class="cell100 column4">6135601000</td>
 							<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo()'>Edit</button></td>
 							</tr>
-				
-								
-								
 							</tbody>
 						</table>
 					</div>
@@ -181,7 +180,7 @@
         </div>
 	</div>
 	</div>
-</div>
+
 
 	
 
@@ -200,9 +199,10 @@
 		var pseudo = 1;
 		socket.emit('getDBClient');
 		socket.on('DataBase', function(rows) {
-		alert("hehehehe")
         var table = document.getElementById("myTable");
+		var table_len=(table.rows.length)-1;
         for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
 			var row = table.insertRow(i);
 			var cell1 = row.insertCell(0);
 			var cell2 = row.insertCell(1);
@@ -210,25 +210,213 @@
 			var cell4 = row.insertCell(3);
 			var cell5 = row.insertCell(4);
 			console.log(row.fulldata);
-			cell1.innerHTML = rows[i].Nom;
-			cell2.innerHTML =  rows[i].Prenom;
-			cell3.innerHTML =  rows[i].Adresse;
-			cell4.innerHTML =  rows[i].Telephone;
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
 			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
         }  
-        
+        for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  for (var i=0; i<rows.length; i++) {
+			//alert(String(rows[i][0]))
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+			cell3.innerHTML =  String(rows[i][2]);
+			cell4.innerHTML =  String(rows[i][3]);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			cell4.id='telephone'+i;
+        }  
         console.log(rows);
       });
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
+		
 		
 		function getinfo($num) {
-			alert($num)
+			//alert($num)
 			document.getElementById("Nom").value = document.getElementById("nom"+parseInt($num)).innerHTML;
 			document.getElementById("Prenom").value = document.getElementById("prenom"+parseInt($num)).innerHTML;
 			document.getElementById("Adresse").value = document.getElementById("adresse"+parseInt($num)).innerHTML;
@@ -270,7 +458,6 @@
     <script src=" /vendor/jquery/jquery.min.js"></script>
     <script src=" /vendor/popper/popper.min.js"></script>
     <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script  src=" /js/rechercherTrie.js"></script>
     <!--===============================================================================================-->
 
 </body>
