@@ -214,12 +214,31 @@
   <script src="/vendor/popper/popper.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   <!--===============================================================================================-->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // Connexion à socket.io
+    var socket = io.connect('http://localhost:8080');
 
-</body>
-<script>
+    $('#echeancier').submit(function () {
+      var prenom = $('#prenomText').val();
+      var nom = $('#nomText').val();
+      var adresse = $('#adresseText').val();
+      var produit1 = $('#produit1Text').val();
+      var produit2 = $('#produit2Text').val();
+      var produit3 = $('#produit3Text').val();
+      var dateLivraison = $('#dateText').val();
+      socket.emit('enregister_echeancier', prenom, nom, adresse, produit1, produit2, produit3, dateLivraison); // Transmet le message aux autres
+      return false; // Permet de bloquer l'envoi "classique" du formulaire
+    });
+
     function Synchronisation() {
-        alert("Synchronisation Reussie");
+      //alert("envoi");
+      socket.emit('synchronisation');
     }
-    </script>
+    socket.on('synchronisation_result', function (message) {
+      alert(message);
+    })
+  </script>
+</body>
 
 </html>

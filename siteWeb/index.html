@@ -39,7 +39,7 @@
   <!--===============================================================================================-->
   <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Mélangeur chimique</div>
   <!--===============================================================================================-->
- 
+
   <!-- CSS pour la page -->
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -144,7 +144,30 @@
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // Connexion à socket.io
+      var socket = io.connect('http://localhost:8080');
 
+      $('#login').submit(function () {
+        var username = $('#user').val();
+        var password = $('#password').val();
+        socket.emit('login_formulaire', username, password); // Transmet le message aux autres
+        return false; // Permet de bloquer l'envoi "classique" du formulaire
+      });
+
+      socket.on('redirectTo', function (target, usr) {
+        window.location.href = target;
+
+        document.cookie = usr;
+        var cookie = document.cookie;
+      });
+
+      socket.on('mauvaise_connection', function () {
+        document.getElementById("pass").value = "";
+        alert("Mauvais mot de passe/user name");
+      });
+    </script>
 </body>
 
 </html>

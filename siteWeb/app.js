@@ -69,65 +69,29 @@ io.sockets.on('connection', function (socket) {
         socket.data = data;
         socket.broadcast.emit('DataBase', data);
     });
+
+    socket.on('enregister_echeancier', function( prenom, nom, produit1, produit2, produit3, dateLivraison) {
+        //data = ent.encode(data);
+        socket.prenom = prenom;
+        socket.nom = nom;
+        socket.produit1 = produit1;
+        socket.produit2 = produit2;
+        socket.produit3 = produit3;
+        socket.dateLivraison = dateLivraison;
+        socket.broadcast.emit('save_echeancier', prenom, nom, produit1, produit2, produit3, dateLivraison);
+    });
+
+    socket.on('synchronisation', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('synchronisation_serveur');
+    }); 
+    
     // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
     // ============================================================================================================
     socket.on('login_formulaire', function(username,password) {
-
-        // On se connecte a notre base de données
-        // --------------------------------------------------------------------------------------------------------
-        var mysql = require('mysql');
-        var con = mysql.createConnection({
-            host: "localhost", user: "root",
-            password: "",
-            database: "projetnodejs"
-        });
-        // --------------------------------------------------------------------------------------------------------
-          
-        // S'il a une erreur à la connection (par exemple XAMPP n'est pas running)
-        // --------------------------------------------------------------------------------------------------------
-        con.connect(function(queryErreur) {
-            if (queryErreur) {
-                throw queryErreur;
-            }
-        // --------------------------------------------------------------------------------------------------------
-
-            // On fait un select dans notre database dans notre table user pour voir si le user existe et procède aux étapes de vérification
-            // ------------------------------------------------------------------------------------------------------------------------------
-            con.query("SELECT Username, Password FROM user WHERE user.Username = '" + username + "' and user.Password = '" + password + "'", 
-            function (queryErreur, queryRetour) {
-
-                // Si on trouve une erreur dans la query, on throw
-                // **************************************************************************************************************************
-                if(queryErreur) {
-                    throw queryErreur;
-                }
-                // **************************************************************************************************************************
-
-                // Si on a rien, on emit notre fonction qui alertera notre utilisateur que quelque chose ne marche pas
-                // **************************************************************************************************************************
-                if(!queryRetour[0])
-                {
-                    socket.emit('unauthorized_login'); 
-                    return false;
-                }
-                // **************************************************************************************************************************
-
-                // Si les données sont bonnes, on redirige l'utilisateur à la page professeur
-                // **************************************************************************************************************************
-                if( password == queryRetour[0].Password && username == queryRetour[0].Username) {
-                    socket.emit('redirect', "consoleProfesseur", queryRetour[0].Username);
-                }
-                // **************************************************************************************************************************
-
-                // Si les données sont mauvaises, on alerte l'utilisateur.
-                // **************************************************************************************************************************
-                else {
-                    socket.emit('unauthorized_login');
-                }
-                // **************************************************************************************************************************
-            });
-            // ------------------------------------------------------------------------------------------------------------------------------
-        });
+        socket.username = username;
+        socket.password = password;
+        socket.broadcast.emit('login', username, password);
     });
     // ============================================================================================================
 
