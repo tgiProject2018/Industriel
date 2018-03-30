@@ -41,25 +41,8 @@ app.get('/listeClient', function (req, res) {
 
 
 io.sockets.on('connection', function (socket) {
-    // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
-    // ============================================================================================================
-    socket.on('nouveau_client', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_client', pseudo);
-    });
-    // ============================================================================================================
 
-    // Dès qu'on nous donne un professeur, (username password), on le stocke en variable de session et on informe
-    // les autres utilisateurs
-    // ============================================================================================================
-    socket.on('nouveau_professeur', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_professeur', pseudo);
-    });
-    // ============================================================================================================
-	//Rajouté par Erwin rempli le tableau
+    //Rajouté par Erwin rempli le tableau
 	socket.on('getDBClient', function () {
         //message = ent.encode(message);
         socket.broadcast.emit('donneDB_Server');
@@ -80,11 +63,32 @@ io.sockets.on('connection', function (socket) {
         socket.dateLivraison = dateLivraison;
         socket.broadcast.emit('save_echeancier', prenom, nom, produit1, produit2, produit3, dateLivraison);
     });
+    socket.on('echeancier_resultat', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('ech_resultat', data);
+    });
 
     socket.on('synchronisation', function () {
         //message = ent.encode(message);
         socket.broadcast.emit('synchronisation_serveur');
     }); 
+    socket.on('sync_reussi', function (msg) {
+        //message = ent.encode(message);
+        socket.broadcast.emit('sync_resultat', msg);
+    }); 
+
+    socket.on('error', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('mauvaise_connection');
+    }); 
+
+    socket.on('redirect', function() {
+        //data = ent.encode(data);
+        var sendTo = '/echeancier'
+        socket.broadcast.emit('redirectTo', sendTo);
+        console.log("redirectTo emit");
+    });
     
     // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
     // ============================================================================================================
@@ -92,16 +96,10 @@ io.sockets.on('connection', function (socket) {
         socket.username = username;
         socket.password = password;
         socket.broadcast.emit('login', username, password);
+        console.log("login emit");
     });
     // ============================================================================================================
 
-    // Dès qu'on reçoit un message, on récupère le pseudo de son auteur et on le transmet aux autres personnes
-    // ============================================================================================================
-    socket.on('nouveau_message', function (message) {
-        message = ent.encode(message);
-        socket.broadcast.emit('nouveau_message', {pseudo: socket.pseudo, message: message});
-    }); 
-    // ============================================================================================================
-});
+   });
 
 server.listen(8080);

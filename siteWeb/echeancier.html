@@ -235,9 +235,13 @@
       //alert("envoi");
       socket.emit('synchronisation');
     }
-    socket.on('synchronisation_result', function (message) {
+    socket.on('ech_resultat', function (message) {
       alert(message);
     })
+    socket.on('sync_resultat', function (message) {
+      alert(message);
+    })
+    
   </script>
 </body>
 

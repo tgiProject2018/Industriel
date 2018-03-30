@@ -69,7 +69,7 @@
     <div class="limiter">
       <div class="container-login100">
         <div class="wrap-login100">
-          <form id="login" class="login100-form validate-form" onsubmit="window.location.href = 'echeancier'; return false;" method="POST">
+          <form id="login" class="login100-form validate-form" method="POST">
             <span class="login100-form-logo" style="background-image: URL(img/committee3.png)">
             </span>
 
@@ -156,16 +156,17 @@
         return false; // Permet de bloquer l'envoi "classique" du formulaire
       });
 
-      socket.on('redirectTo', function (target, usr) {
+      socket.on('redirectTo', function (target) {
         window.location.href = target;
 
-        document.cookie = usr;
-        var cookie = document.cookie;
+        //document.cookie = usr;
+        //var cookie = document.cookie;
       });
 
       socket.on('mauvaise_connection', function () {
-        document.getElementById("pass").value = "";
+        document.getElementById("password").value = "";
         alert("Mauvais mot de passe/user name");
+        console.log("redirectTo rceived");
       });
     </script>
 </body>
