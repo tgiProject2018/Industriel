@@ -41,7 +41,7 @@
 
   <!-- Navigation -->
   <!--===============================================================================================-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4 row">
+  <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
     <div class="container col-12">
       <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -119,15 +119,11 @@
               <div class="col-lg-2">
                 <label class="text-heading t">Prenom :</label>
                 <label class="text-heading">Nom :</label>
-                <label class="text-heading">Telephone :</label>
-                <label class="text-heading">Adresse :</label>
               </div>
               <!-- Colonne de textField-->
               <div class="col-sm-5">
                 <input type="text" class="form-control" placeholder="Ex: Cédric" id="prenomText">
                 <input type="text" class="form-control" placeholder="Ex: Léveillé" id="nomText">
-                <input type="text" class="form-control" placeholder="Ex: 613-333-4444" id="telephoneText">
-                <input type="text" class="form-control" placeholder="Ex: 123 Rue" id="adresseText">
               </div>
             </div>
           </div>
@@ -144,10 +140,10 @@
               <div class="col-lg-2"></div>
               <!-- Colonne de label-->
               <div class="col-lg-2 ">
-                <label class="text-heading">Poduit 1 :</label>
-                <label class="text-heading">Poduit 2 :</label>
-                <label class="text-heading">Poduit 3 :</label>
-                <label class="text-heading">Date de livaraison :</label>
+                <label class="text-heading">Produit 1 :</label>
+                <label class="text-heading">Produit 2 :</label>
+                <label class="text-heading">Produit 3 :</label>
+                <label class="text-heading">Date de livraison :</label>
               </div>
               <!-- Colonne de textField-->
               <div class="col-lg-5">
@@ -218,12 +214,35 @@
   <script src="/vendor/popper/popper.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   <!--===============================================================================================-->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // Connexion à socket.io
+    var socket = io.connect('http://localhost:8080');
 
-</body>
-<script>
+    $('#echeancier').submit(function () {
+      var prenom = $('#prenomText').val();
+      var nom = $('#nomText').val();
+      var adresse = $('#adresseText').val();
+      var produit1 = $('#produit1Text').val();
+      var produit2 = $('#produit2Text').val();
+      var produit3 = $('#produit3Text').val();
+      var dateLivraison = $('#dateText').val();
+      socket.emit('enregister_echeancier', prenom, nom, adresse, produit1, produit2, produit3, dateLivraison); // Transmet le message aux autres
+      return false; // Permet de bloquer l'envoi "classique" du formulaire
+    });
+
     function Synchronisation() {
-        alert("Synchronisation Reussie");
+      //alert("envoi");
+      socket.emit('synchronisation');
     }
-    </script>
+    socket.on('ech_resultat', function (message) {
+      alert(message);
+    })
+    socket.on('sync_resultat', function (message) {
+      alert(message);
+    })
+    
+  </script>
+</body>
 
 </html>

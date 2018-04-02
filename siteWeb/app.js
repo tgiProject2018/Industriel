@@ -40,25 +40,8 @@ app.get('/listeClient', function (req, res) {
 
 
 io.sockets.on('connection', function (socket) {
-    // Dès qu'on nous donne un pseudo, on le stocke en variable de session et on informe les autres personnes
-    // ============================================================================================================
-    socket.on('nouveau_client', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_client', pseudo);
-    });
-    // ============================================================================================================
 
-    // Dès qu'on nous donne un professeur, (username password), on le stocke en variable de session et on informe
-    // les autres utilisateurs
-    // ============================================================================================================
-    socket.on('nouveau_professeur', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_professeur', pseudo);
-    });
-    // ============================================================================================================
-	//Rajouté par Erwin rempli le tableau
+    //Rajouté par Erwin rempli le tableau
 	socket.on('getDBClient', function () {
         //message = ent.encode(message);
         socket.broadcast.emit('donneDB_Server');
@@ -97,53 +80,53 @@ io.sockets.on('connection', function (socket) {
             }
         // --------------------------------------------------------------------------------------------------------
 
-            // On fait un select dans notre database dans notre table user pour voir si le user existe et procède aux étapes de vérification
-            // ------------------------------------------------------------------------------------------------------------------------------
-            con.query("SELECT Username, Password FROM user WHERE user.Username = '" + username + "' and user.Password = '" + password + "'", 
-            function (queryErreur, queryRetour) {
+    socket.on('enregister_echeancier', function( prenom, nom, produit1, produit2, produit3, dateLivraison) {
+        //data = ent.encode(data);
+        socket.prenom = prenom;
+        socket.nom = nom;
+        socket.produit1 = produit1;
+        socket.produit2 = produit2;
+        socket.produit3 = produit3;
+        socket.dateLivraison = dateLivraison;
+        socket.broadcast.emit('save_echeancier', prenom, nom, produit1, produit2, produit3, dateLivraison);
+    });
+    socket.on('echeancier_resultat', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('ech_resultat', data);
+    });
 
-                // Si on trouve une erreur dans la query, on throw
-                // **************************************************************************************************************************
-                if(queryErreur) {
-                    throw queryErreur;
-                }
-                // **************************************************************************************************************************
+    socket.on('synchronisation', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('synchronisation_serveur');
+    }); 
+    socket.on('sync_reussi', function (msg) {
+        //message = ent.encode(message);
+        socket.broadcast.emit('sync_resultat', msg);
+    }); 
 
-                // Si on a rien, on emit notre fonction qui alertera notre utilisateur que quelque chose ne marche pas
-                // **************************************************************************************************************************
-                if(!queryRetour[0])
-                {
-                    socket.emit('unauthorized_login'); 
-                    return false;
-                }
-                // **************************************************************************************************************************
+    socket.on('error', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('mauvaise_connection');
+    }); 
 
-                // Si les données sont bonnes, on redirige l'utilisateur à la page professeur
-                // **************************************************************************************************************************
-                if( password == queryRetour[0].Password && username == queryRetour[0].Username) {
-                    socket.emit('redirect', "consoleProfesseur", queryRetour[0].Username);
-                }
-                // **************************************************************************************************************************
-
-                // Si les données sont mauvaises, on alerte l'utilisateur.
-                // **************************************************************************************************************************
-                else {
-                    socket.emit('unauthorized_login');
-                }
-                // **************************************************************************************************************************
-            });
-            // ------------------------------------------------------------------------------------------------------------------------------
-        });
+    socket.on('redirect', function() {
+        //data = ent.encode(data);
+        var sendTo = '/echeancier'
+        socket.broadcast.emit('redirectTo', sendTo);
+        console.log("redirectTo emit");
+    });
+    
+    // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
+    // ============================================================================================================
+    socket.on('login_formulaire', function(username,password) {
+        socket.username = username;
+        socket.password = password;
+        socket.broadcast.emit('login', username, password);
+        console.log("login emit");
     });
     // ============================================================================================================
 
-    // Dès qu'on reçoit un message, on récupère le pseudo de son auteur et on le transmet aux autres personnes
-    // ============================================================================================================
-    socket.on('nouveau_message', function (message) {
-        message = ent.encode(message);
-        socket.broadcast.emit('nouveau_message', {pseudo: socket.pseudo, message: message});
-    }); 
-    // ============================================================================================================
-});
+   });
 
 server.listen(8080);
