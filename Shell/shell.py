@@ -18,7 +18,7 @@ class IndustrielShell(cmd.Cmd):
         print('Temperature prise')
 		
     def do_savecuruserdata(self, arg):
-        'Sauvegarder l’acquisition courante dans la BD locale du capteur'
+        'Sauvegarder lacquisition courante dans la BD locale du capteur'
         #spliter nom prenom date
         tout = arg.split(' ')
         if(len(tout)==3):
@@ -36,7 +36,7 @@ class IndustrielShell(cmd.Cmd):
         print(annee,"/",mois,"/",jour," ",heure,":",minute)
 	
     def do_senddata(self, arg):
-        'Envoie des données au serveur à distance. L’adresse ip du serveur (ipserver) doit être envoyée en paramètre'
+        'Envoie des donnees au serveur a distance. L adresse ip du serveur (ipserver) doit etre envoyee en parametre'
         transfere = Transfere()
         transfere.createTransfere("ip1",arg)
         transfere.transferer()

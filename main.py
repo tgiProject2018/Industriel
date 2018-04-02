@@ -4,16 +4,15 @@
 import fonctions
 from Shell.shell import IndustrielShell
 from Shell.sendToServer import Transfere
-import fonctions
-#import Thermometre as Therm
-from socketIO_client import SocketIO
-import threading
-import time
+
+#from socketIO_client import SocketIO
+from threading import Thread
+import time 
 
 
-class Tache_Shell(threading.Thread):
+class Tache_Shell(Thread):
     def __init__(self, threadID, name, counter):
-        threading.Thread.__init__(Tache_Shell)
+        Thread.__init__(self)
         self.threadID = threadID
         self.name = name
         self.counter = counter
@@ -30,9 +29,9 @@ class Tache_Shell(threading.Thread):
         #     time.sleep(1)
         #     counter+=1
 
-class Tache_Flask(threading.Thread):
+class Tache_Flask(Thread):
     def __init__(self, threadID, name, counter):
-        threading.Thread.__init__(Tache_Flask)
+        Thread.__init__(self)
         self.threadID = threadID
         self.name = name
         self.counter = counter
