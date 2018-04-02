@@ -6,9 +6,8 @@ class ClientDao() :
 	#A modifier
 	path = ''
 	def create_connection() :
-		db_file = path
 		try: 
-			conn = sqlite3.connect(db_file)
+			conn = sqlite3.connect(path)
 			return conn
 		except Error as e:
 			print (e)		
