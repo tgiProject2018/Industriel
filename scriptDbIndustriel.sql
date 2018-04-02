@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
--- Host: localhost    Database: dbBiomedic
+-- Host: localhost    Database: dbIndustriel
 -- ------------------------------------------------------
 -- Server version	5.6.24
 
@@ -19,9 +19,9 @@
 -- Current Database: `dbBiomedic`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dbBiomedic` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dbIndustriel` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `dbBiomedic`;
+USE `dbIndustriel`;
 
 --
 -- Table structure for table `tblclient`
