@@ -68,6 +68,13 @@ io.sockets.on('connection', function (socket) {
         socket.data = data;
         socket.broadcast.emit('DataBase', data);
     });
+	socket.on('SendModification', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('ModificationDataBase', data);
+		//console.log(data);
+		
+    });
     // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
     // ============================================================================================================
     socket.on('login_formulaire', function(username,password) {

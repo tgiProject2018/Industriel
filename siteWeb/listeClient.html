@@ -101,16 +101,16 @@
   <!-- Container contenant le login form -->
 
     <!--===============================================================================================-->
-	
 	<div >
-	<br/>
-	<form>
-		<fieldset>
-			<input id="search" type="text"  name="search" placeholder="Search.." color="black">
-		</fieldset>
-	</form>
-	<br/>
-	</div>
+              <!-- Colonne de label-->
+        <form>
+			<fieldset>
+				<label class="searchLable" for="test">Search:</label>
+				<span><input class="searchinput" id="search" type="text"  name="search" placeholder="Search.."></span>
+			</fieldset>
+		</form>
+    </div>
+	
 	<div class="table100 ver2 m-b-110">
 					<div class="table100-head">
 						<table>
@@ -153,7 +153,7 @@
             <center><hr class="divider" ></center>
             <div class="container-form">
 					<div class="row">
-						
+						<input style="display:none;"type="id" id = "id"  class="form-change" >
 						<div class="col-sm">
 							<label class="text-heading">Nom:</label>
 							<input type="nom" id = "Nom"  class="form-change" >
@@ -167,10 +167,11 @@
 							<input type="Adresse" class="form-change" id="Adresse">
 						</div>
 						
+						
 					</div>
 			</div>
 			<br>
-			<center><input id="Modifier" value="Modifier" class="btn btn-primary" type="submit" /></center>
+			<center><input id="Modifier" value="Modifier" class="btn btn-primary" onclick="SendModification()" /></center>
         </div>
 	</div>
 	</div>
@@ -196,17 +197,18 @@
         var table = document.getElementById("myTable");
 		var table_len=(table.rows.length)-1;
         for (var i=0; i<rows.length; i++) {
-			//alert(String(rows[i][0]))
 			var row = table.insertRow(i);
 			var cell1 = row.insertCell(0);
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(3);
+			var cell4 = row.insertCell(4);
 			console.log(row.fulldata);
-			cell1.innerHTML =  String(rows[i][0]);
-			cell2.innerHTML =  String(rows[i][1]);
-			cell3.innerHTML =  String(rows[i][2]);
-			cell4.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			cell1.innerHTML =  String(rows[i][1]);
+			cell2.innerHTML =  String(rows[i][2]);
+			cell3.innerHTML =  String(rows[i][3]);
+			cell4.innerHTML =  String(i);
+			cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
 			
 			//css pour les cellules
 			row.className='row100 body';
@@ -214,10 +216,13 @@
 			cell2.className='cell100 column2';
 			cell3.className='cell100 column3';
 			cell4.className='cell100 column4';
+			cell5.className='cell100 column5';
 			cell1.id='nom'+i;
 			cell2.id='prenom'+i;
 			cell3.id='adresse'+i;
-        }    
+			cell4.id=String(i);
+			cell4.style.display = "none";
+        }   
         console.log(rows);
       });
 		
@@ -227,8 +232,22 @@
 			document.getElementById("Nom").value = document.getElementById("nom"+parseInt($num)).innerHTML;
 			document.getElementById("Prenom").value = document.getElementById("prenom"+parseInt($num)).innerHTML;
 			document.getElementById("Adresse").value = document.getElementById("adresse"+parseInt($num)).innerHTML;
+			document.getElementById("id").value = document.getElementById(parseInt($num)).innerHTML;
 			}
-		
+		function SendModification() {
+			var id=document.getElementById("id").value;
+			var nom=document.getElementById("Nom").value;
+			var prenom=document.getElementById("Prenom").value;
+			var Adresse=document.getElementById("Adresse").value;
+			var myArray = [id, nom, prenom,Adresse];
+			socket.emit('SendModification',{id: id, nom: nom,prenom: prenom,Adresse: Adresse});
+			alert("Vos Modifications ont bien eté enregistré");
+			document.getElementById("Nom").value = "";
+			document.getElementById("Prenom").value = "";
+			document.getElementById("Adresse").value = "";
+			document.getElementById("id").value = "";
+			
+		}
 	</script>
 	
     
