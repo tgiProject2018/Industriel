@@ -80,6 +80,7 @@ io.sockets.on('connection', function (socket) {
             }
         // --------------------------------------------------------------------------------------------------------
 
+
     socket.on('enregister_echeancier', function( prenom, nom, produit1, produit2, produit3, dateLivraison) {
         //data = ent.encode(data);
         socket.prenom = prenom;
@@ -128,5 +129,6 @@ io.sockets.on('connection', function (socket) {
     // ============================================================================================================
 
    });
-
+   });
+      });
 server.listen(8080);
