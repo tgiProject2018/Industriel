@@ -53,6 +53,13 @@ def authentification(*args):
 		socketIO.emit('authentification',true);
 	else
 		socketIO.emit('authentification',false);
+def rechercheChamp(*args):
+	query = ("select * from tblClient where prenom like %s or nom like %s");
+	cursor.execute(query,(args[0]+"%"));
+	results = cursor.fetchall();
+	socketIO.emit('rechercheChamp', resultats);
+	cursor.close();
+	cnx.close();
 	
 	
 ## 'main'
@@ -60,6 +67,8 @@ def authentification(*args):
 socketIO.on('afficherClients', afficherToutLesClient)
 socketIO.on('modifierClient', modifierClient)
 socketIO.on('afficherMelanges', afficherMelanges)
+socketIO.on('authentification', authentification)
+socketIO.on('rechercheChamp', rechercheChamp)
 ## Loop principal
 socketIO.wait()
 ## On fait le menage
