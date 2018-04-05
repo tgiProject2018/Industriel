@@ -58,6 +58,13 @@ io.sockets.on('connection', function (socket) {
 		//console.log(data);
 		
     });
+	socket.on('SendSearch', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('SendSearchDataBase', data);
+		//console.log(data);
+		
+    });
     // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
     // ============================================================================================================
     socket.on('login_formulaire', function(username,password) {

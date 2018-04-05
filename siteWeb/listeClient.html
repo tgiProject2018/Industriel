@@ -104,10 +104,10 @@
     <!--===============================================================================================-->
 	<div >
               <!-- Colonne de label-->
-        <form>
+        <form >
 			<fieldset>
 				<label class="searchLable" for="test">Search:</label>
-				<span><input class="searchinput" id="search" type="text"  name="search" placeholder="Search.."></span>
+				<span><input class="searchinput" id="search" type="text" onkeyup="SendSearch()" name="search" placeholder="Search.."></span>
 			</fieldset>
 		</form>
     </div>
@@ -228,7 +228,6 @@
         console.log(rows);
       });
 		
-		
 		function getinfo($num) {
 			//alert($num)
 			document.getElementById("Nom").value = document.getElementById("nom"+parseInt($num)).innerHTML;
@@ -248,7 +247,10 @@
 			document.getElementById("Prenom").value = "";
 			document.getElementById("Adresse").value = "";
 			document.getElementById("id").value = "";
-			
+		}
+		function SendSearch() {
+			var search=document.getElementById("search").value;
+			socket.emit('SendSearch',{search: search});
 		}
 	</script>
 	
