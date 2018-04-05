@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.16  Distrib 10.1.25-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: dbIndustriel
+-- Host: localhost    Database: dbindustriel
 -- ------------------------------------------------------
--- Server version	5.6.24
+-- Server version	10.1.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `dbBiomedic`
+-- Current Database: `dbindustriel`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dbIndustriel` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dbindustriel` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `dbIndustriel`;
+USE `dbindustriel`;
 
 --
 -- Table structure for table `tblclient`
@@ -36,7 +36,7 @@ CREATE TABLE `tblclient` (
   `nom` varchar(50) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `tblclient` (
 
 LOCK TABLES `tblclient` WRITE;
 /*!40000 ALTER TABLE `tblclient` DISABLE KEYS */;
+INSERT INTO `tblclient` VALUES (1,'paul','tadi','2341 godaddy'),(2,'bob','robert','43 avecCheveux'),(3,'patate','Fole','802 Viebien');
 /*!40000 ALTER TABLE `tblclient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,6 +69,7 @@ CREATE TABLE `tblemploye` (
 
 LOCK TABLES `tblemploye` WRITE;
 /*!40000 ALTER TABLE `tblemploye` DISABLE KEYS */;
+INSERT INTO `tblemploye` VALUES ('user','user');
 /*!40000 ALTER TABLE `tblemploye` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +89,7 @@ CREATE TABLE `tblmelange` (
   PRIMARY KEY (`id`),
   KEY `idClient` (`idClient`),
   CONSTRAINT `tblmelange_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `tblclient` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +98,7 @@ CREATE TABLE `tblmelange` (
 
 LOCK TABLES `tblmelange` WRITE;
 /*!40000 ALTER TABLE `tblmelange` DISABLE KEYS */;
+INSERT INTO `tblmelange` VALUES (1,22.3,12.1,'2018-04-05',1),(2,31.5,12.1,'2018-04-05',1),(3,6,6.56,'2018-04-01',3);
 /*!40000 ALTER TABLE `tblmelange` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-02 11:48:18
+-- Dump completed on 2018-04-05 13:46:35
