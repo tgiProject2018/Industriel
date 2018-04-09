@@ -5,7 +5,7 @@ import mysql.connector
 ## Connection a la base de donnee
 cnx = mysql.connector.connect(user='root', password='',
 	host='127.0.0.1',
-	database='dbsystemcontrolleur')
+	database='dbindustriel')
 cursor = cnx.cursor()
 
 ## Deleguees
