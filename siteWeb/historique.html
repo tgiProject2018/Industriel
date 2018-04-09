@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    if (localStorage.getItem("passw") == null) {
+        window.location.href = '/';
+    } else {
+        var time = Date.now();
+        var logintime = localStorage.getItem("time");
+        if (time - logintime > 50000) {
+            localStorage.removeItem("usern");
+            localStorage.removeItem("passw");
+            localStorage.removeItem("time");
+            window.location.href = '/';
+        }
+    }
+</script>
 
 <head>
 
@@ -46,28 +60,35 @@
     <!--===============================================================================================-->
     <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
         <div class="container col-12">
-          <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item px-lg-2">
-                <a class="nav-link text-uppercase text-expanded" href="echeancier">Échéancier
-                </a>
-              </li>
-              <li class="nav-item px-lg-2">
-                <a class="nav-link text-uppercase text-expanded" href="listeClient">Liste de Clients</a>
-              </li>
-              <li class="nav-item px-lg-2">
-                <a class="nav-link text-uppercase text-expanded" href="">Historique</a>
-                <span class="sr-only">(current)</span>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" href="echeancier">Échéancier
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" href="listeClient">Liste de Clients</a>
+                    </li>
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" href="">Historique</a>
+                        <span class="sr-only">(current)</span>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <label id="user">Bienvenue
+                        <script>
+                            document.getElementById("user").innerHTML += localStorage.getItem("usern");
+                        </script>&nbsp</label>
+                    <button class="btnlogout" onclick="logout()">Logout</button>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
     <!--===============================================================================================-->
 
     <!-- CSS pour la page -->
@@ -95,11 +116,11 @@
     <!-- Container contenant le login form -->
 
     <!--===============================================================================================-->
-    <div >
-        <form id="recherche" action="" onsubmit="" method="POST" >
-            <input  class="form-control"  style="display:inline-block"placeholder="Ex: Cédric" id="prenomText" >
+    <div>
+        <form id="recherche" action="" onsubmit="" method="POST">
+            <input class="form-control" style="display:inline-block" placeholder="Ex: Cédric" id="prenomText">
             <input type="text" class="form-control" style="display:inline-block" placeholder="Ex: Léveillé" id="nomText">
-            <input id="Recherche" value="Recherche"  style="display:inline-block" class="btn btn-primary" type="submit" />
+            <input id="Recherche" value="Recherche" style="display:inline-block" class="btn btn-primary" type="submit" />
         </form>
     </div>
     <div class="table100 ver1 m-b-110">
@@ -180,56 +201,63 @@
     </div>
 
 
-        <!--===============================================================================================-->
-        <div id="dropDownSelect1"></div>
-        <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <div id="dropDownSelect1"></div>
+    <!--===============================================================================================-->
 
 
-        <!-- Javascript -->
-        <!--===============================================================================================-->
-        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script>
-            $('.js-pscroll').each(function () {
-                var ps = new PerfectScrollbar(this);
+    <!-- Javascript -->
+    <!--===============================================================================================-->
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            var ps = new PerfectScrollbar(this);
 
-                $(window).on('resize', function () {
-                    ps.update();
-                })
-            });
-        </script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/bootstrap/js/popper.js"></script>
-        <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/daterangepicker/moment.min.js"></script>
-        <script src=" /vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script src=" /js/main.js"></script>
-        <!--===============================================================================================-->
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
 
-        <!-- Footer -->
-        <!--===============================================================================================-->
-        <footer class="bg-faded text-center py-5">
-            <div class="container">
-                <p class="m-0">Copyright &copy; ECJ TGI 2018</p>
-            </div>
-        </footer>
-        <!--===============================================================================================-->
+        function logout() {
+            localStorage.removeItem("usern");
+            localStorage.removeItem("passw");
+            localStorage.removeItem("time");
+            window.location.href = '/';
+        }
+    </script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/bootstrap/js/popper.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/daterangepicker/moment.min.js"></script>
+    <script src=" /vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /js/main.js"></script>
+    <!--===============================================================================================-->
 
-        <!-- Bootstrap core JavaScript -->
-        <!--===============================================================================================-->
-        <script src=" /vendor/jquery/jquery.min.js"></script>
-        <script src=" /vendor/popper/popper.min.js"></script>
-        <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
+    <!-- Footer -->
+    <!--===============================================================================================-->
+    <footer class="bg-faded text-center py-5">
+        <div class="container">
+            <p class="m-0">Copyright &copy; ECJ TGI 2018</p>
+        </div>
+    </footer>
+    <!--===============================================================================================-->
+
+    <!-- Bootstrap core JavaScript -->
+    <!--===============================================================================================-->
+    <script src=" /vendor/jquery/jquery.min.js"></script>
+    <script src=" /vendor/popper/popper.min.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
 
 </body>
 

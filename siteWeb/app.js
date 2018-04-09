@@ -65,29 +65,7 @@ io.sockets.on('connection', function (socket) {
 		//console.log(data);
 		
     });
-    // On ecoute le login_formulaire pour authentifier une personne lorsqu'il entre ses données
-    // ============================================================================================================
-    socket.on('login_formulaire', function(username,password) {
-
-        // On se connecte a notre base de données
-        // --------------------------------------------------------------------------------------------------------
-        var mysql = require('mysql');
-        var con = mysql.createConnection({
-            host: "localhost", user: "root",
-            password: "",
-            database: "projetnodejs"
-        });
-        // --------------------------------------------------------------------------------------------------------
-          
-        // S'il a une erreur à la connection (par exemple XAMPP n'est pas running)
-        // --------------------------------------------------------------------------------------------------------
-        con.connect(function(queryErreur) {
-            if (queryErreur) {
-                throw queryErreur;
-            }
-        // --------------------------------------------------------------------------------------------------------
-
-
+   
     socket.on('enregister_echeancier', function( prenom, nom, produit1, produit2, produit3, dateLivraison) {
         //data = ent.encode(data);
         socket.prenom = prenom;
@@ -118,10 +96,10 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit('mauvaise_connection');
     }); 
 
-    socket.on('redirect', function() {
+    socket.on('redirect', function(username, pasword) {
         //data = ent.encode(data);
         var sendTo = '/echeancier'
-        socket.broadcast.emit('redirectTo', sendTo);
+        socket.broadcast.emit('redirectTo', sendTo, username, pasword);
         console.log("redirectTo emit");
     });
     
@@ -136,6 +114,5 @@ io.sockets.on('connection', function (socket) {
     // ============================================================================================================
 
    });
-   });
-      });
+
 server.listen(8080);

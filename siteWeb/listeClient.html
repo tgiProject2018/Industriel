@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <script>
+    if (localStorage.getItem("passw") == null) {
+        window.location.href = '/';
+    } else {
+        var time = Date.now();
+        var logintime = localStorage.getItem("time");
+        if (time - logintime > 50000) {
+            localStorage.removeItem("usern");
+            localStorage.removeItem("passw");
+            localStorage.removeItem("time");
+            window.location.href = '/';
+        }
+    }
+</script>
 
 <head>
 
@@ -93,6 +106,13 @@
             <span class="sr-only">(current)</span>
           </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <label id="user">Bienvenue
+              <script>
+                  document.getElementById("user").innerHTML += localStorage.getItem("usern");
+              </script>&nbsp</label>
+          <button class="btnlogout" onclick="logout()">Logout</button>
+      </ul>
       </div>
     </div>
   </nav>
@@ -251,7 +271,14 @@
 		function SendSearch() {
 			var search=document.getElementById("search").value;
 			socket.emit('SendSearch',{search: search});
-		}
+    }
+    
+    function logout(){
+      localStorage.removeItem("usern");
+      localStorage.removeItem("passw");
+      localStorage.removeItem("time");
+      window.location.href = '/';
+  }
 	</script>
 	
     

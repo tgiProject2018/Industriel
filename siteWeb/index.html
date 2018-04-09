@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <script>
+        if(localStorage.getItem("passw") != null){
+          var time = Date.now();
+          var logintime = localStorage.getItem("time");
+          if(time - logintime < 50000){
+            window.location.href = '/echeancier';
+          }
+        }
+        
+    </script>  
 <head>
 
   <!-- Meta -->
@@ -156,11 +165,12 @@
         return false; // Permet de bloquer l'envoi "classique" du formulaire
       });
 
-      socket.on('redirectTo', function (target) {
+      socket.on('redirectTo', function (target, username, password) {
         window.location.href = target;
-
-        //document.cookie = usr;
-        //var cookie = document.cookie;
+        localStorage.setItem("usern", username);
+        localStorage.setItem("passw", password);
+        var now = Date.now();
+        localStorage.setItem("time", now);
       });
 
       socket.on('mauvaise_connection', function () {
