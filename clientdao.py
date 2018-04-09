@@ -32,6 +32,6 @@ class ClientDao() :
 			#cur.execute("INSERT INTO tblassoClientMelange(idClient,idMelange) values (%s,last_insert_rowid())")
 		cur.close()
 		conn.commit()
-conn.close()
+		conn.close()
 	
 	
