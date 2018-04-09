@@ -54,17 +54,22 @@ def authentification(*args):
 	else:
 		socketIO.emit('authentification',false);
 def rechercheChamp(*args):
+	print(args[0])
 	query = ("select * from tblClient where prenom like %s or nom like %s");
+	#query = ("select * from tblClient");
 	cursor.execute(query,(args[0]+"%",args[0]+"%"));
 	results = cursor.fetchall();
-	socketIO.emit('rechercheChamp', resultats);
+	#print (" lfjdigjg ", results)
+	socketIO.emit('rechercheChamp', results);
 	cursor.close();
 	cnx.close();
 	
 	
 ## 'main'
-socketIO = SocketIO("localhost",8080)
+#rechercheChamp("tadi")
 #socketIO.on('afficherInfo', afficherInfo)
+socketIO = SocketIO("localhost",8080)
+
 socketIO.on('afficherClients', afficherToutLesClient)
 socketIO.on('modifierClient', modifierClient)
 socketIO.on('afficherMelanges', afficherMelanges)
