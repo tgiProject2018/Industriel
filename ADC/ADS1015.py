@@ -16,24 +16,23 @@ class ADS1015(object):
             import Adafruit_GPIO.I2C as I2C
             i2c = I2C
         self._device = i2c.get_i2c_device(address, **kwargs)
-        
-        
+        self.read_level()
 
     def read_level(self):
-        #self._device.writeList()
         self.configure()
+
         # On s assure qu auncune conversion n est pas en cours en verifiant
         # le registre OS du convertisseur
         while (self._device.readList(ADS1015_CONFIG_POINTER, 1) == 1):
+            #print("Waiting...")
             time.sleep(1 / ADS1015_DATA_RATE + 0.001)
         
-        #self._device.writeList(ADS1015_CONFIG_POINTER, [0])
+        time.sleep(1 / ADS1015_DATA_RATE + 0.001)
+        
         value = self._device.readList(ADS1015_CONVERSION_POINTER, 2)
         valeur = (value[0] << 8) | value[1]
         print(valeur)
         
-        #print("val[0]: %s | val[1]: %s" % (bin(value[0]), bin(value[1])))
-        #choix = random.randint(0,1)
         if (valeur > 10000):
             return 0
         else:
@@ -51,12 +50,9 @@ class ADS1015(object):
         gain = 0b010 << 9
         mode = 1 << 8
         config |= data_rate | mode | gain | mux | os
-
+        
         # On ecrit dans le registre de configuration en convertissant en little endian
         self._device.writeList(ADS1015_CONFIG_POINTER, [(config >> 8) & 0xFF, config & 0xFF])
-        
-        
-        #print(bin(config))
 
     def valeur_convertie(self, low, high):
         # Convertir en valeur signee 12-bit
