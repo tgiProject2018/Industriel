@@ -49,9 +49,9 @@ def authentification(*args):
 	password = args[1];
 	query = ("Select id from tblEmployer where user = %s and password = %s");
 	cursor.execute(query,(user,password));
-	if cursor.rowcount == 1
+	if cursor.rowcount == 1:
 		socketIO.emit('authentification',true);
-	else
+	else:
 		socketIO.emit('authentification',false);
 def rechercheChamp(*args):
 	query = ("select * from tblClient where prenom like %s or nom like %s");
