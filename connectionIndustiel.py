@@ -55,7 +55,7 @@ def authentification(*args):
 		socketIO.emit('authentification',false);
 def rechercheChamp(*args):
 	query = ("select * from tblClient where prenom like %s or nom like %s");
-	cursor.execute(query,(args[0]+"%"));
+	cursor.execute(query,(args[0]+"%",args[0]+"%"));
 	results = cursor.fetchall();
 	socketIO.emit('rechercheChamp', resultats);
 	cursor.close();
@@ -63,6 +63,7 @@ def rechercheChamp(*args):
 	
 	
 ## 'main'
+socketIO = SocketIO("localhost",8080)
 #socketIO.on('afficherInfo', afficherInfo)
 socketIO.on('afficherClients', afficherToutLesClient)
 socketIO.on('modifierClient', modifierClient)
