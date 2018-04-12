@@ -6,23 +6,26 @@ from Thermometre import MLX as MLX
 adc = ADC()
 therm = MLX.MLX()
 
-# Fonction retournant le niveau de liquide courant
-def get_level():
-    #adc.configure()
-    lvl = adc.read_level()
-    return lvl
+class Fonctions():
+    # Fonction retournant le niveau de liquide courant
+    def get_level(self):
+        lvl = adc.read_level()
+        return lvl
 
-# Fonction retournant la temperature courante
-def get_temp():
-    #therm.configure()
-    temp = therm.read_temp()
-    return temp
+    # Fonction retournant la temperature courante
+    def get_temp_ambiente(self):
+        temp = therm.read_temp_ambiente()
+        return temp
 
-def save_current_user_data():
-    return
+    def get_temp_objet(self):
+        temp = therm.read_temp_objet()
+        return temp
 
-def config_date(sDate):
-    return
+    def save_current_user_data(self):
+        return
 
-def send_data(ip):
-    return
+    def config_date(self, sDate):
+        return
+
+    def send_data(self, ip):
+        return

@@ -1,20 +1,23 @@
 import cmd, sys
-from Shell.sendToServer import Transfere
-import fonctions
+from sendToServer import Transfere
+from fonctions import Fonctions
 class IndustrielShell(cmd.Cmd):
     intro = 'Welcome Industrial , Bonjour\n'
     prompt = '>'
     file = None
+    
     # result = Resultat()
 		
     #commande principale do_commande
     def do_gettemp(self, arg):
         'Fait acquisition de la temperature et affichage console'
-        # self.result = GetResultat().getResultat()
-		
+		# self.result = GetResultat().getResultat()
 		#attendre les reponse des capteurs.	
-        temp = fonctions.get_temp()
-        print('Temperature en Celcius', temp)
+        fonctions = Fonctions()
+        temp_ambiente = fonctions.get_temp_ambiente()
+        temp_objet = fonctions.get_temp_objet()
+        print('Temperature ambiente en Celcius', temp_ambiente)
+        print('Temperature de l objet en Celcius', temp_objet)
         print('Temperature prise')
 		
     def do_savecuruserdata(self, arg):
@@ -48,6 +51,7 @@ class IndustrielShell(cmd.Cmd):
 		
     def do_getlevel(self, arg):
         'Fait acquisition du niveau de liquide et affichage console'
+        fonctions = Fonctions()
         niveau = fonctions.get_level()
         print('Hauteur atteinte en cm', niveau)
         print('Niveau du liquide pris')
