@@ -30,7 +30,9 @@ class Tache_Flask(Thread):
         self.counter = counter
 
     def run(self):
-        Flask("__main__").run()
+		app = Flask("__main__")
+		app.run()
+		app.register_blueprint(app, url_prefix='/Flask')
 		
 # main
 

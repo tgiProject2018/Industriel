@@ -14,10 +14,10 @@ class IndustrielShell(cmd.Cmd):
 		# self.result = GetResultat().getResultat()
 		#attendre les reponse des capteurs.	
         fonctions = Fonctions()
-        temp_ambiente = fonctions.get_temp_ambiente()
+        #temp_ambiente = fonctions.get_temp_ambiente()
         temp_objet = fonctions.get_temp_objet()
-        print('Temperature ambiente en Celcius', temp_ambiente)
-        print('Temperature de l objet en Celcius', temp_objet)
+        #print('Temperature ambiente en Celcius', temp_ambiente)
+        print('Temperature du liquide en Celcius: %s' % temp_objet)
         print('Temperature prise')
 		
     def do_savecuruserdata(self, arg):
