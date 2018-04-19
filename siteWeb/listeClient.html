@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--<html lang="en">
+<<html lang="en">
   <script>
     if (localStorage.getItem("passw") == null) {
         window.location.href = '/';
@@ -14,7 +14,7 @@
         }
     }
 </script>
--->
+
 <head>
 
   <!-- Meta -->
@@ -77,9 +77,9 @@
 
   <!-- Titre et adresse -->
   <!--===============================================================================================-->
-  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Comit&eacute; de Loisirs d'Ivaco</div>
+  <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Mélangeur chimique</div>
   <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
-    1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
+      1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
   <!--===============================================================================================-->
 
   <!-- Navigation -->
@@ -120,16 +120,18 @@
 
   
   <!-- Container contenant le login form -->
-
+  <br>
     <!--===============================================================================================-->
 	<div >
               <!-- Colonne de label-->
-        <form >
-			<fieldset>
-				<label class="searchLable" for="test">Search:</label>
-				<span><input class="searchinput" id="search" type="text" onkeyup="SendSearch()" name="search" placeholder="Search.."></span>
-			</fieldset>
-		</form>
+             
+        
+    <form id="recherche" action="" onsubmit="" method="POST">
+        <fieldset>
+        <label class="searchLable" for="test">Search:</label>
+        <span> <input class="form-control" style="display:inline-block" placeholder="Search.." name="search" onkeyup="SendSearch()" id="search"></span>
+        </fieldset>
+    </form>
     </div>
 	
 	
@@ -150,12 +152,6 @@
 					<div class="table100-body js-pscroll">
 						<table id = "myTable">
 							<tbody>
-							<tr class="row100 body">
-							<td class="cell100 column1">Erwin</td>
-							<td class="cell100 column2">Nzia</td>
-							<td class="cell100 column3">298 everest pvt</td>
-							<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo()'>Edit</button></td>
-							</tr>
 							</tbody>
 						</table>
 					</div>
@@ -217,6 +213,7 @@
 		socket.emit('getDBClient');
 		socket.on('DataBase', function(rows) {
         var table = document.getElementById("myTable");
+        table.innerHTML = "";
 		var table_len=(table.rows.length)-1;
         for (var i=0; i<rows.length; i++) {
 			var row = table.insertRow(i);
@@ -260,7 +257,7 @@
 			var nom=document.getElementById("Nom").value;
 			var prenom=document.getElementById("Prenom").value;
 			var Adresse=document.getElementById("Adresse").value;
-			var myArray = [id, nom, prenom,Adresse];
+      var myArray = [id, nom, prenom,Adresse];
 			socket.emit('SendModification',{id: id, nom: nom,prenom: prenom,Adresse: Adresse});
 			alert("Vos Modifications ont bien eté enregistré");
 			document.getElementById("Nom").value = "";
@@ -270,7 +267,8 @@
 		}
 		function SendSearch() {
 			var search=document.getElementById("search").value;
-			socket.emit('SendSearch',{search: search});
+      socket.emit('SearchClient', search);
+      console.log(search);
     }
     
     function logout(){

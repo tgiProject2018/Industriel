@@ -52,18 +52,37 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit('DataBase', data);
     });
 	socket.on('SendModification', function(data) {
+        console.log("mod");
         //data = ent.encode(data);
         socket.data = data;
         socket.broadcast.emit('ModificationDataBase', data);
 		//console.log(data);
 		
     });
-	socket.on('SendSearch', function(data) {
+	socket.on('SearchClient', function(data) {
+        //data = ent.encode(data);
+        console.log("send search");
+        socket.data = data;
+        console.log("send search2");
+        socket.broadcast.emit('SendSearchDatabase', data);
+		console.log(data);
+		
+    });
+    socket.on('SendSearchHistorique', function(data) {
         //data = ent.encode(data);
         socket.data = data;
-        socket.broadcast.emit('SendSearchDataBase', data);
+        socket.broadcast.emit('SendSearchDataBaseHistorique', data);
 		//console.log(data);
 		
+    });
+    socket.on('getDBHistorique', function () {
+        //message = ent.encode(message);
+        socket.broadcast.emit('donneDB_ServerHistorique');
+    }); 
+    socket.on('afficherHistorique', function(data) {
+        //data = ent.encode(data);
+        socket.data = data;
+        socket.broadcast.emit('DataBaseHistorique', data);
     });
    
     socket.on('enregister_echeancier', function( prenom, nom, produit1, produit2, produit3, dateLivraison) {
