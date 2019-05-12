@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<<script>
+    if (localStorage.getItem("passw") == null) {
+        window.location.href = '/';
+    } else {
+        var time = Date.now();
+        var logintime = localStorage.getItem("time");
+        if (time - logintime > 50000) {
+            localStorage.removeItem("usern");
+            localStorage.removeItem("passw");
+            localStorage.removeItem("time");
+            window.location.href = '/';
+        }
+    }
+</script>
+
+<head>
+
+    <!-- Meta -->
+    <!--===============================================================================================-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--===============================================================================================-->
+
+    <!-- Titre -->
+    <!--===============================================================================================-->
+    <title>Historique</title>
+    <!--===============================================================================================-->
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom fonts for this template -->
+    <!--===============================================================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+        rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <!-- Custom styles for this template -->
+    <!--===============================================================================================-->
+    <link href=" /css/business-casual.css" rel="stylesheet">
+    <link rel="icon" href=" /img/committee.png">
+    <!--===============================================================================================-->
+
+</head>
+
+<body>
+
+    <!-- Titre et adresse -->
+    <!--===============================================================================================-->
+    <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Mélangeur chimique</div>
+    <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
+        1040 COUNTY RD 17 | L'ORIGNAL, ON K0B 1K0 | 613-675-4671</div>
+    <!--===============================================================================================-->
+
+    <!-- Navigation -->
+    <!--===============================================================================================-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
+        <div class="container col-12">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Ivaco Loisirs</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" href="echeancier">Échéancier
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" href="listeClient">Liste de Clients</a>
+                    </li>
+                    <li class="nav-item px-lg-2">
+                        <a class="nav-link text-uppercase text-expanded" style="font-weight: bold;" href="">Historique</a>
+                        <span class="sr-only">(current)</span>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <label id="user">Bienvenue
+                        <script>
+                            document.getElementById("user").innerHTML += localStorage.getItem("usern");
+                        </script>&nbsp</label>
+                    <button class="btnlogout" onclick="logout()">Logout</button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--===============================================================================================-->
+
+    <!-- CSS pour la page -->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" /css/util.css">
+    <link rel="stylesheet" type="text/css" href=" /css/main3.css">
+    <!--===============================================================================================-->
+
+    <!-- Container contenant le login form -->
+
+    <!--===============================================================================================-->
+    <div>
+        <form id="recherche" action="" onsubmit="" method="POST">
+            <input class="form-control" style="display:inline-block" placeholder="Ex: Cédric Leveille" onkeyup="SendSearchHistorique()" id="nomText">
+        </form>
+    </div>
+    <div class="table100 ver2 m-b-110">
+        <div class="table100-head">
+            <table>
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">Niveau liquide atteint</th>
+                        <th class="cell100 column2">Température</th>
+                        <th class="cell100 column3">Date Production</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+            <table id = "myTable">
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!--===============================================================================================-->
+    <div id="dropDownSelect1"></div>
+    <!--===============================================================================================-->
+
+
+    <!-- Javascript -->
+    <!--===============================================================================================-->
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script language="JavaScript">
+        var socket = io.connect('http://localhost:8080');
+		var pseudo = 1;
+		socket.emit('getDBHistorique');
+		socket.on('DataBaseHistorique', function(rows) {
+        var table = document.getElementById("myTable");
+		var table_len=(table.rows.length)-1;
+        for (var i=0; i<rows.length; i++) {
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+
+			
+			console.log(row.fulldata);
+			cell1.innerHTML =  String(rows[i][0]);
+			cell2.innerHTML =  String(rows[i][1]);
+            cell3.innerHTML =  String(rows[i][2]);
+
+			
+			//cell5.innerHTML =  "<td class='cell100 column4' id = 'btno'><button type='button' onClick='getinfo("+i+")'>Edit</button></td>";
+			
+			//css pour les cellules
+			row.className='row100 body';
+			cell1.className='cell100 column1';
+			cell2.className='cell100 column2';
+			cell3.className='cell100 column3';
+			
+			cell1.id='nom'+i;
+			cell2.id='prenom'+i;
+			cell3.id='adresse'+i;
+			
+        }   
+        console.log(rows);
+      });
+        $('.js-pscroll').each(function () {
+            var ps = new PerfectScrollbar(this);
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+
+        function logout() {
+            localStorage.removeItem("usern");
+            localStorage.removeItem("passw");
+            localStorage.removeItem("time");
+            window.location.href = '/';
+        }
+
+        function SendSearchHistorique() {
+            var nom = document.getElementById("nomText").value;
+            socket.emit('SendSearchHistorique', {nom: nom});
+        }
+    </script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/bootstrap/js/popper.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/daterangepicker/moment.min.js"></script>
+    <script src=" /vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src=" /js/main.js"></script>
+    <!--===============================================================================================-->
+
+    <!-- Footer -->
+    <!--===============================================================================================-->
+    <footer class="bg-faded text-center py-5">
+        <div class="container">
+            <p class="m-0">Copyright &copy; ECJ TGI 2018</p>
+        </div>
+    </footer>
+    <!--===============================================================================================-->
+
+    <!-- Bootstrap core JavaScript -->
+    <!--===============================================================================================-->
+    <script src=" /vendor/jquery/jquery.min.js"></script>
+    <script src=" /vendor/popper/popper.min.js"></script>
+    <script src=" /vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+
+</body>
+
+</html>
